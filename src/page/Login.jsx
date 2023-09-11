@@ -38,7 +38,6 @@ const Login = () => {
         <TextField
           autoComplete="name"
           name="name"
-          required
           fullWidth
           id="name"
           label="Tên đăng nhập"
@@ -47,7 +46,6 @@ const Login = () => {
           value={formik.values.name}
         />
         <TextField
-          required
           fullWidth
           name="password"
           label="Mật khẩu"
