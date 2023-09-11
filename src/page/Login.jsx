@@ -9,23 +9,14 @@ import { useFormik } from "formik";
 const Login = () => {
   const formik = useFormik({
     initialValues: {
-      lastname: "",
       name: "",
-      code: "",
-      email: "",
       password: "",
-      confirmPassword: "",
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Bắt buộc nhập họ tên"),
       password: Yup.string().required("Bắt buộc nhập mật khẩu"),
     }),
-    onSubmit: (value, props) => {
-      setTimeout(() => {
-        props.resetForm();
-        props.setSubmitting(false);
-      }, 2000);
-    },
+    onSubmit: (value, props) => {},
   });
   return (
     <div class="login__page">
@@ -44,7 +35,10 @@ const Login = () => {
           autoFocus
           onChange={formik.handleChange}
           value={formik.values.name}
-        />
+        />{" "}
+        {formik.errors.name && formik.touched.name && (
+          <p className="help is-danger">{formik.errors.name}</p>
+        )}
         <TextField
           fullWidth
           name="password"
@@ -54,7 +48,10 @@ const Login = () => {
           autoComplete="new-password"
           value={formik.values.password}
           onChange={formik.handleChange}
-        />
+        />{" "}
+        {formik.errors.password && formik.touched.password && (
+          <p className="help is-danger">{formik.errors.password}</p>
+        )}
         <Button
           type="submit"
           fullWidth
