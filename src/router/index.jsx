@@ -10,8 +10,8 @@ import Register from "../page/Register";
 import UpdateInfo from "../page/UpdateInfo";
 import UpdatePassword from "../page/UpdatePassword";
 import Layout from "../components/Layout";
+import LayoutAuth from "../components/LayoutAuth";
 import Error404Page from "../page/Error404Page";
-const user = false;
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -19,48 +19,48 @@ export const router = createBrowserRouter([
     errorElement: <Error404Page />,
     children: [
       {
-        path: "/",
-        element: <Login />,
-      },
-      {
         path: "/login",
         element: <Login />,
-      },
-      {
-        path: "/add-info",
-        element: <AddInfo />,
-      },
-      {
-        path: "/auth",
-        element: <Auth />,
-      },
-      {
-        path: "/background",
-        element: <Background />,
-      },
-      {
-        path: "/forgot-password",
-        element: <ForgotPassword />,
-      },
-      {
-        path: "/info",
-        element: <ListInfo />,
       },
       {
         path: "/register",
         element: <Register />,
       },
       {
-        path: "/edit-info",
-        element: <UpdateInfo />,
+        path: "/forgot-password",
+        element: <ForgotPassword />,
       },
       {
-        path: "/edit-password",
-        element: <UpdatePassword />,
-      },
-      {
-        path: "/dashboard",
-        element: <div>Hello world!</div>,
+        path: "/",
+        element: <LayoutAuth />,
+        errorElement: <Error404Page />,
+        children: [
+          {
+            path: "/add-info",
+            element: <AddInfo />,
+          },
+          {
+            path: "/profile",
+            element: <Auth />,
+          },
+          {
+            path: "/background",
+            element: <Background />,
+          },
+
+          {
+            path: "/info",
+            element: <ListInfo />,
+          },
+          {
+            path: "/edit-info",
+            element: <UpdateInfo />,
+          },
+          {
+            path: "/edit-password",
+            element: <UpdatePassword />,
+          }
+        ],
       },
     ],
   },

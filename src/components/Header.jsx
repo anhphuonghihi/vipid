@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../asset/img/VipId.png";
 const Header = ({ login }) => {
   return (
-    <div class="header__container">
+    <div className="header__container">
       <div className="header__box__logo">
         <img src={Logo} alt="Logo" />
       </div>

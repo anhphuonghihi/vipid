@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header";
 import Title from "../components/Title";
 import SubTitle from "../components/SubTitle";
 import { Button, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/slice/authSlice";
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const authUser = useSelector((state) => state.auth.user);
+  useEffect(() => {
+    if (!authUser?.token) {
+      <Navigate to={'/'} />
+    }
+  }, [!authUser.token]);
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -16,10 +27,15 @@ const Login = () => {
       name: Yup.string().required("Bắt buộc nhập họ tên"),
       password: Yup.string().required("Bắt buộc nhập mật khẩu"),
     }),
-    onSubmit: (value, props) => {},
+    onSubmit: (data) => {
+      dispatch(login(data));
+      navigate("/");
+    },
   });
+  // file.js
+
   return (
-    <div class="login__page">
+    <div className="login__page">
       <Header login />
       <div className="text__box__login">
         <Title title="Đăng nhập" />

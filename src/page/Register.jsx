@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import isEmailValidator from "validator/lib/isEmail";
+import { register } from "../redux/slice/authSlice";
+import { useDispatch } from "react-redux";
 const Register = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       lastname: "",
@@ -39,13 +42,14 @@ const Register = () => {
         .required("Bắt buộc nhập mật khẩu"),
       password: Yup.string().required("Bắt buộc nhập mật khẩu"),
     }),
-    onSubmit: (value) => {
-      console.log(value);
+    onSubmit: (data) => {
+      dispatch(register(data));
+      console.log("data", data);
     },
   });
 
   return (
-    <div class="login__page">
+    <div className="login__page">
       <Header />
       <div className="text__box__login">
         <Title title="Đăng ký" />
