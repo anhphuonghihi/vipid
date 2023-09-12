@@ -23,7 +23,6 @@ const ProtectedRoute = () => {
     <>
       {authUser.token ? (
         <div>
-          <HeaderAuth authUser={authUser} />
           <div>
             <Outlet />
             <ToastContainer />

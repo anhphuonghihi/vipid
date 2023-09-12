@@ -1,3 +1,54 @@
 {
-    
-}
+    "id": 4,
+    "img": "http://localhost:3000/static/media/avatar.eb4547a9f08347775ec9.png",
+    "name": "Nguyễn Ngọc Cường",
+    "position": "Sale Online",
+    "cty": "CEO GROUP",
+    "boxs": [
+      {
+        "icon": "fa-solid fa-phone",
+        "name_box": "Điện thoại",
+        "value_box": "0369727895"
+      },
+      {
+        "icon": "fa-solid fa-phone",
+        "name_box": "Dịch vụ",
+        "value_box": "Danh thiếp điện tử VIPID"
+      },
+      {
+        "icon": "fa-solid fa-phone",
+        "name_box": "Cài đặt hướng dẫn",
+        "value_box": "AB"
+      },
+      {
+        "icon": "fa-solid fa-phone",
+        "name_box": "Địa chỉ",
+        "value_box": "14 Nguyễn Ngọc Nại, Hà Nội"
+      },
+      {
+        "icon": "fa-brands fa-facebook",
+        "name_box": "Facebook",
+        "value_box": "Nguyễn Ngọc Cường"
+      },
+      {
+        "icon": "fa-solid fa-phone",
+        "name_box": "Email",
+        "value_box": "cuongnnseosgroup@gmail.com"
+      },
+      {
+        "icon": "fa-solid fa-phone",
+        "name_box": "TikTok",
+        "value_box": "Nguyễn Ngọc Cường"
+      },
+      {
+        "icon": "fa-solid fa-phone",
+        "name_box": "Tài khoản ngân hàng",
+        "value_box": "BIDV 02110000023456"
+      },
+      {
+        "icon": "fa-solid fa-phone",
+        "name_box": "Website",
+        "value_box": "danhthiepvipid.com"
+      }
+    ]
+  }

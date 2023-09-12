@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-const Box = ({ item, index, len }) => {
+const AddBox = ({ item, index, len }) => {
   console.log("item.id" + item.id);
   const navigate = useNavigate();
-  const editInfo = (id) => {
-    navigate(`/info/${id}`);
+  const addInfo = (id) => {
+    navigate(`/info/add/${id}`);
   };
   return (
     <div
-      onClick={() => editInfo(item.id)}
+      onClick={() => addInfo(item.id)}
       class={`contact__bottom__box ${len === index && "last"}`}
     >
       <div class="contact__bottom__box--icon">
@@ -27,4 +27,4 @@ const Box = ({ item, index, len }) => {
   );
 };
 
-export default Box;
+export default AddBox;

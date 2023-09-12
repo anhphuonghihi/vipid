@@ -57,7 +57,7 @@ export const router = createBrowserRouter([
             element: <ListInfo />,
           },
           {
-            path: "/edit-info",
+            path: "info/:id",
             element: <UpdateInfo />,
           },
           {

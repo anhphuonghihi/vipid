@@ -233,8 +233,8 @@ body .avatar img {
   border-bottom: 1px solid #5f5f5f;
   gap: 16px;
 }
-.contact__bottom__box:last-child {
-  border-bottom: 0;
+.contact__bottom__box:hover {
+  cursor: pointer;
 }
 .contact__bottom__box--text {
   display: flex;
@@ -327,4 +327,42 @@ body .logo__avatar img {
 #root {
   height: 100vh;
   overflow: scroll;
+}
+i {
+  color: #fff;
+}
+.contact__bottom__box:last-child {
+  border: none;
+}
+.layout__container .contact__bottom__box.last {
+  border-bottom: 0 !important;
+}
+
+#save-btn {
+  width: 62px;
+  height: 62px;
+  background-color: transparent;
+  border: none;
+  position: fixed;
+  bottom: 41px;
+  right: 776px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #000;
+  font-size: 25px;
+}
+@media only screen and (max-width: 450px) {
+  #save-btn {
+    width: 62px;
+    height: 62px;
+    background-color: transparent;
+    border: none;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    font-size: 25px;
+    background: #000;
+  }
 }

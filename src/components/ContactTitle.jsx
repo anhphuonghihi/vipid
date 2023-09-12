@@ -1,14 +1,14 @@
 import React from "react";
 
-const ContactTitle = () => {
+const ContactTitle = ({ name, position, cty }) => {
   return (
     <div class="contact">
       <h2 class="contact__name" id="contact__name">
-        Nguyễn ngọc cường
+        {name}
       </h2>
-      <span class="contact__job_position"> sale Online </span>
+      <span class="contact__job_position"> {position} </span>
       <div class="contact__company" id="contact__cty">
-        ceo GROUP
+        {cty}
       </div>
     </div>
   );

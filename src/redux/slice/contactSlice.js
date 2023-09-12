@@ -26,7 +26,7 @@ export const getContactsByUser = createAsyncThunk(
     try {
       //   const response = await API.get(`/contact/userContacts/${userId}`);
       //   return response.data;
-      return contact__list__data;
+      return contact__list__data["contact"][userId];
     } catch (err) {
       toast.error(err.response.data);
       return rejectWithValue(err.response.data);

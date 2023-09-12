@@ -16,15 +16,32 @@ const HeaderAuth = ({ authUser }) => {
     dispatch(logout());
     return navigate("/login");
   };
+  const content__menu = [
+    {
+      link: "/",
+      text: "Trang cá nhân",
+    },
+    {
+      link: "/",
+      text: "Giao diện",
+    },
+    {
+      link: "/",
+      text: "Đổi mật khẩu",
+    },
+  ];
   return (
     <>
       <div className="header__box__logo">
         <img src={Logo} alt="Logo" />
         <div className="header__auth">
           <div class="menu" id="menu">
-            <Link to="#news">Trang cá nhân</Link>
-            <Link to="#about">Giao diện</Link>
-            <Link to="#contact">Đổi mật khẩu</Link>
+            {content__menu &&
+              content__menu.map((item, index) => (
+                <Link key={index} to={item.link}>
+                  {item.text}
+                </Link>
+              ))}
             <button class="link" onClick={SubmitLogout}>
               Đăng xuất
             </button>
