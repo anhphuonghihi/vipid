@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
 import { logout } from "../redux/slice/authSlice";
 import Login from "../page/Login";
+import HeaderAuth from "./HeaderAuth";
+import { ToastContainer } from "react-toastify";
 const ProtectedRoute = () => {
   const authUser = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -21,17 +23,11 @@ const ProtectedRoute = () => {
     <>
       {authUser.token ? (
         <div>
-          <ul>
-            <li>
-              <Link to="/">Add Post</Link>
-            </li>
-            <li>
-              <button onClick={SubmitLogout}>Logout</button>
-            </li>
-            <li>
-              <Link to="/profile">Hi {authUser.user_display_name}</Link>
-            </li>
-          </ul>
+          <HeaderAuth authUser={authUser} />
+          <div>
+            <Outlet />
+            <ToastContainer />
+          </div>
         </div>
       ) : (
         <>

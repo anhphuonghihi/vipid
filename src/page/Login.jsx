@@ -8,10 +8,12 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/slice/authSlice";
+import { toast } from "react-toastify";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authUser = useSelector((state) => state.auth.user);
+  const isError = useSelector((state) => state.auth.isError);
   useEffect(() => {
     if (!authUser?.token) {
       <Navigate to={'/'} />
@@ -32,8 +34,11 @@ const Login = () => {
       navigate("/");
     },
   });
-  // file.js
-
+  // useEffect(() => {
+  //   if (isError) {
+  //     toast.error(isError);
+  //   }
+  // }, [isError]);
   return (
     <div className="login__page">
       <Header login />
@@ -51,7 +56,7 @@ const Login = () => {
           autoFocus
           onChange={formik.handleChange}
           value={formik.values.name}
-        />{" "}
+        />
         {formik.errors.name && formik.touched.name && (
           <p className="help is-danger">{formik.errors.name}</p>
         )}

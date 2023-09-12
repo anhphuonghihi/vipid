@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import login__data from "../../data/login.json";
 import register__data from "../../data/register.json";
+import { toast } from "react-toastify";
+import { redirect } from "react-router-dom";
 const initialState = {
   user: {},
   isLoading: false,
@@ -10,24 +12,44 @@ const initialState = {
 
 export const login = createAsyncThunk(
   "auth/login",
-  async ({ name, password }) => {
-    const data = { username: name, password: password };
-    return login__data;
+  async ({ name, password }, { rejectWithValue }) => {
+    try {
+      const data = { username: name, password: password };
+      // const response = await API.post("/login", data);
+      console.log(login__data.token);
+      localStorage.setItem("token", login__data.token);
+      toast.success("Đăng nhập thành công");
+      return login__data;
+    } catch (err) {
+      toast.error(err.response.data);
+      return rejectWithValue(err.response.data);
+    }
   }
 );
 
-export const register = createAsyncThunk("auth/register", async (user) => {
-  const { lastname, name, code, email, password, confirmPassword } = user;
-  const data = {
-    lastname: lastname,
-    username: name,
-    code: code,
-    email: email,
-    password: password,
-    confirmPassword: confirmPassword,
-  };
-  return register__data;
-});
+export const register = createAsyncThunk(
+  "auth/register",
+  async (user, { rejectWithValue }) => {
+    const { lastname, name, code, email, password, confirmPassword } = user;
+    // const response = await API.post("/register", data);
+    try {
+      const data = {
+        lastname: lastname,
+        username: name,
+        code: code,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+      };
+      toast.success("Đăng kí thành công");
+
+      return register__data;
+    } catch (err) {
+      toast.error(err.response.data);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: "auth",

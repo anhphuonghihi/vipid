@@ -36,6 +36,10 @@ export const router = createBrowserRouter([
         errorElement: <Error404Page />,
         children: [
           {
+            path: "/",
+            element: <ListInfo />,
+          },
+          {
             path: "/add-info",
             element: <AddInfo />,
           },
@@ -59,7 +63,7 @@ export const router = createBrowserRouter([
           {
             path: "/edit-password",
             element: <UpdatePassword />,
-          }
+          },
         ],
       },
     ],

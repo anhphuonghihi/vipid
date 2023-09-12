@@ -4,27 +4,29 @@
   padding: 0;
 }
 .layout__container {
-  max-width: 450px;
+  max-width: 375px;
   margin: 0 auto;
   padding: 20px;
 }
 @media only screen and (max-width: 450px) {
   .layout__container {
-    max-width: 450px;
+    max-width: 375px;
     margin: 0 auto;
     padding: 7vw;
+    padding-top: 3vw;
   }
 }
 .layout__container {
-  .login__page {
-    .header__container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      img {
-        width: 100px;
-      }
+  .header__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    img {
+      width: 100px;
     }
+  }
+  .login__page {
     h2 {
       color: #1a1a1a;
       font-size: 32px;
@@ -77,4 +79,252 @@
 }
 .help.is-danger {
   color: red;
+}
+.header__box__logo {
+  position: relative;
+}
+.header__box__logo img {
+  width: 52px;
+}
+.header__auth {
+  .link,
+  a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    border: none;
+    background-color: transparent;
+  }
+  .link {
+    width: 100%;
+    text-align: left;
+  }
+  button.icon {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    background: black;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  .link:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  .menu {
+    position: fixed;
+    height: 100vh;
+    background-color: #333;
+    top: 0;
+    left: 0;
+    width: 0%;
+    transition: width 1s;
+  }
+  .menu.active {
+    width: 70%;
+  }
+  @media only screen and (min-width: 450px) {
+    .menu.active {
+      width: 15%;
+    }
+    .menu {
+      position: fixed;
+      height: 100vh;
+      background-color: #333;
+      top: 0;
+      left: 38%;
+      width: 0%;
+      transition: width 1s;
+    }
+  }
+  .menu a {
+    display: none;
+    transition: display 1s;
+  }
+  .menu.active .link {
+    display: block;
+  }
+  .menu .link {
+    display: none;
+    transition: display 1s;
+  }
+  .menu.active a {
+    display: block;
+  }
+}
+body {
+  font-family: "Roboto", sans-serif !important;
+}
+
+body .avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+body .avatar img {
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  box-shadow: 0px 5px 8px -3px #aaaaaa;
+}
+
+.contact {
+  padding-top: 38px;
+  width: 100%;
+}
+
+.contact .contact__name {
+  color: #fff;
+
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.contact .contact__job_position {
+  color: #ededed;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  text-align: center;
+  display: block;
+}
+
+.contact .contact__company {
+  color: #fff;
+
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.contact__bottom {
+  margin-top: 48px;
+}
+
+.contact__bottom__box {
+  display: flex;
+  align-items: center;
+  padding-top: 11.5px;
+  padding-bottom: 14.5px;
+  border-bottom: 1px solid #5f5f5f;
+  gap: 16px;
+}
+.contact__bottom__box:last-child {
+  border-bottom: 0;
+}
+.contact__bottom__box--text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contact__bottom__box--title {
+  color: #bebebe;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.contact__bottom__box--content {
+  color: #fff;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+#save-btn {
+  width: 62px;
+  height: 62px;
+  background-color: transparent;
+  border: none;
+  position: fixed;
+  bottom: 41px;
+  right: 800px;
+}
+
+body .layout__container .background {
+  position: absolute;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+  background-image: url("./img.svg");
+  background-size: cover;
+}
+
+body .layout__container .background__img {
+  position: absolute;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: #f7be00;
+  opacity: 0.5;
+}
+
+@media only screen and (max-width: 450px) {
+  body .layout__container .background {
+    padding: 7vw;
+    padding-top: 3vw;
+  }
+
+  body .layout__container .background__img {
+    padding: 7vw;
+    padding-top: 3vw;
+  }
+}
+body .logo__avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+body .logo__avatar img {
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  box-shadow: 0px 5px 8px -3px #aaaaaa;
+}
+
+#root {
+  height: 100vh;
+  overflow: scroll;
 }
