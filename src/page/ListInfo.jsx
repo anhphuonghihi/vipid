@@ -11,7 +11,7 @@ import Avatar from "../components/Avatar";
 import AddShow from "../components/AddShow";
 import HeaderAuth from "../components/HeaderAuth";
 import { getInfosByUser } from "../redux/slice/infoSlice";
-
+import info__list__data from "../data/info__list.json";
 export default function ListInfo() {
   const authUser = useSelector((state) => state.auth.user);
   const { user } = useSelector((state) => ({ ...state.auth }));
@@ -32,7 +32,16 @@ export default function ListInfo() {
   }
   const len = userContacts?.boxs?.length;
   //local
+
   var infoData = JSON.parse(localStorage.getItem("infoData"));
+
+  if (infoData != null) {
+
+    localStorage.setItem("infoData", JSON.stringify(infoData));
+  } else {
+    localStorage.setItem("infoData", JSON.stringify(info__list__data["boxs"]));
+    localStorage.setItem("infoData", JSON.stringify(infoData));
+  }
   return (
     <>
       <HeaderAuth authUser={authUser} />

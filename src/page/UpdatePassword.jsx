@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Input } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import GoBack from "../components/GoBack";
+import HeaderEdit from "../components/HeaderEdit";
 
 const UpdatePassword = () => {
   const dispatch = useDispatch();
-
 
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -24,13 +25,13 @@ const UpdatePassword = () => {
 
   return (
     <>
+      <GoBack title="Đổi mật khẩu" />
+      <HeaderEdit title="Đổi mật khẩu" />
       <div className="updatePasswordContainer">
         <div className="updatePasswordBox">
-          <h2 className="updatePasswordHeading">Đổi mật khẩu</h2>
-
           <form className="updatePasswordForm" onSubmit={updatePasswordSubmit}>
             <div className="loginPassword">
-              <Input
+              <TextField
                 type="password"
                 placeholder="Mật khẩu cũ"
                 required
@@ -40,7 +41,7 @@ const UpdatePassword = () => {
             </div>
 
             <div className="loginPassword">
-              <Input
+              <TextField
                 type="password"
                 placeholder="Mật khẩu mới"
                 required
@@ -49,7 +50,7 @@ const UpdatePassword = () => {
               />
             </div>
             <div className="loginPassword">
-              <Input
+              <TextField
                 type="password"
                 placeholder="Xác nhận mật khẩu"
                 required

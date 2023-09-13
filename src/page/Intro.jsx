@@ -11,14 +11,14 @@ import userContacts from "../data/contact__list.json";
 import infoData from "../data/info__list.json";
 import Avatar from "../components/Avatar";
 import { useNavigate } from "react-router-dom";
-const Intro = () => {
+const Intro = ({ handleDemo }) => {
   const len = userContacts?.boxs?.length;
   const navigate = useNavigate();
   const onNav = () => {
     navigate("/login");
   };
   return (
-    <div onClick={onNav} className="login__cup">
+    <div onClick={handleDemo ? handleDemo : onNav} className="login__cup">
       <div className="layout__container">
         <div class="background"></div>
         <div class="background__img"></div>
@@ -33,7 +33,13 @@ const Intro = () => {
           <div class="list__info">
             {infoData.boxs &&
               infoData.boxs.map((item, index) => (
-                <Box item={item} key={index} index={index + 1} len={len} />
+                <Box
+                  item={item}
+                  key={index}
+                  index={index + 1}
+                  len={len}
+                  none__link
+                />
               ))}
           </div>
           <button id="save-btn">

@@ -11,9 +11,9 @@ import UpdateInfo from "../page/UpdateInfo";
 import UpdatePassword from "../page/UpdatePassword";
 import Layout from "../components/Layout";
 import LayoutAuth from "../components/LayoutAuth";
-import Error404Page from "../page/Intro";
 import AddInfoId from "../page/AddInfoId";
 import Intro from "../page/Intro";
+import Error404Page from "../page/Error404Page";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/demo",
+        element: <Intro />,
       },
       {
         path: "/forgot-password",
