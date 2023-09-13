@@ -10,6 +10,7 @@ import ContactTitle from "../components/ContactTitle";
 import Avatar from "../components/Avatar";
 import AddShow from "../components/AddShow";
 import HeaderAuth from "../components/HeaderAuth";
+import { getInfosByUser } from "../redux/slice/infoSlice";
 
 export default function ListInfo() {
   const authUser = useSelector((state) => state.auth.user);
@@ -17,16 +18,21 @@ export default function ListInfo() {
   const { userContacts, loading } = useSelector((state) => ({
     ...state.contact,
   }));
-  console.log(userContacts);
+  const { userInfos } = useSelector((state) => ({
+    ...state.info,
+  }));
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getContactsByUser(1));
+    // dispatch(getInfosByUser(1));
   }, []);
   if (loading) {
     return <LinearProgress color="success" />;
   }
   const len = userContacts?.boxs?.length;
+  //local
+  var infoData = JSON.parse(localStorage.getItem("infoData"));
   return (
     <>
       <HeaderAuth authUser={authUser} />
@@ -36,8 +42,9 @@ export default function ListInfo() {
         position={userContacts.position}
         cty={userContacts.cty}
       />
-      {userContacts.boxs &&
-        userContacts.boxs.map((item, index) => (
+      {/* local */}
+      {infoData &&
+        infoData.map((item, index) => (
           <Box item={item} key={index} index={index + 1} len={len} />
         ))}
       <AddShow />

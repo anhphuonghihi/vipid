@@ -16,7 +16,7 @@ const Login = () => {
   const isError = useSelector((state) => state.auth.isError);
   useEffect(() => {
     if (!authUser?.token) {
-      <Navigate to={'/'} />
+      <Navigate to={"/"} />;
     }
   }, [!authUser.token]);
 
@@ -69,7 +69,7 @@ const Login = () => {
           autoComplete="new-password"
           value={formik.values.password}
           onChange={formik.handleChange}
-        />{" "}
+        />
         {formik.errors.password && formik.touched.password && (
           <p className="help is-danger">{formik.errors.password}</p>
         )}

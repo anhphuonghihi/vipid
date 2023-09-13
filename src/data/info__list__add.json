@@ -1,0 +1,44 @@
+[
+  {
+    "id": "phone",
+    "icon": "fa-solid fa-phone",
+    "name_box": "Số điện thoại",
+    "value_box": "Thêm số điện thoại"
+  },
+  {
+    "id": "email",
+    "icon": "fa-solid fa-phone",
+    "name_box": "Email",
+    "value_box": "Thêm thư điện tử"
+  },
+  {
+    "id": "dia-chi",
+    "icon": "fa-solid fa-phone",
+    "name_box": "Địa chỉ",
+    "value_box": "Thêm địa chỉ"
+  },
+  {
+    "id": "website",
+    "icon": "fa-solid fa-phone",
+    "name_box": "website",
+    "value_box": "Thêm URL WEBSITE"
+  },
+  {
+    "id": "dich-vu",
+    "icon": "fa-solid fa-phone",
+    "name_box": "Dịch vụ",
+    "value_box": "Thêm dịch vụ bạn cung cấp"
+  },
+  {
+    "id": "mxh",
+    "icon": "fa-solid fa-phone",
+    "name_box": "Mạng xã hội",
+    "value_box": "Thêm mạng xã hội"
+  },
+  {
+    "id": "tk-ngan-hang",
+    "icon": "fa-solid fa-phone",
+    "name_box": "Tài khoản ngân hàng",
+    "value_box": "Thêm tài khoản ngân hàng"
+  }
+]

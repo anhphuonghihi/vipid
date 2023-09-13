@@ -1,18 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../API";
 import { toast } from "react-toastify";
-import contact__add__data from "../../data/contact__add.json";
 import contact__list__data from "../../data/contact__list.json";
-import contact__delete__data from "../../data/contact__delete.json";
-import contact__edit__data from "../../data/contact__edit.json";
 export const createContact = createAsyncThunk(
   "contact/createContact",
   async ({ createContacttData }, { rejectWithValue }) => {
     try {
       //   const response = await API.post("/contact", createContacttData);
       //   return response.data;
+      var contactData = JSON.parse(localStorage.getItem("contactData"));
+      contactData.push(createContacttData);
+      localStorage.setItem("contactData", JSON.stringify(contactData));
       toast.success("Thêm thông tin liên hệ thành công");
-      return contact__add__data;
+      return contactData;
     } catch (err) {
       toast.error(err.response.data);
       return rejectWithValue(err.response.data);
@@ -26,7 +26,12 @@ export const getContactsByUser = createAsyncThunk(
     try {
       //   const response = await API.get(`/contact/userContacts/${userId}`);
       //   return response.data;
-      return contact__list__data["contact"][userId];
+      localStorage.setItem(
+        "contactData",
+        JSON.stringify(contact__list__data["contact"][userId])
+      );
+      var contactData = JSON.parse(localStorage.getItem("contactData"));
+      return contactData;
     } catch (err) {
       toast.error(err.response.data);
       return rejectWithValue(err.response.data);
@@ -41,7 +46,18 @@ export const updateContact = createAsyncThunk(
       //   const response = await API.patch(`/contact/${id}`, updatedContactData);
       //   return response.data;
       toast.success("Cập nhận thông tin liên hệ thành công");
-      return contact__edit__data;
+      var contacts = JSON.parse(localStorage.getItem('contactData'));
+      if (contacts != null) {
+          var contact = contacts.filter((x) => x.id == updatedContactData.id).pop();
+          if (contact != null) {
+              contact.name = updatedContactData.name;
+              contact.email = updatedContactData.email;
+              contact.gender = updatedContactData.gender;
+              contact.status = updatedContactData.status;
+          }
+          localStorage.setItem('contactData', JSON.stringify(contacts));
+      }
+      return contacts;
     } catch (err) {
       toast.error(err.response.data);
       return rejectWithValue(err.response.data);
@@ -55,8 +71,17 @@ export const deleteContact = createAsyncThunk(
     try {
       //   const response = await API.delete(`/contact/${id}`);
       //   return response.data;
+      var contactData = JSON.parse(localStorage.getItem("contactData"));
+      if (contactData != null) {
+        const deletedata = contactData.boxs.findIndex((a) => a.id === id);
+        console.log(contactData);
+        contactData.splice(deletedata, 1);
+        console.log(contactData);
+        localStorage.setItem("contactData", JSON.stringify(contactData));
+      }
+
       toast.success("Xóa thông tin liên hệ thành công");
-      return contact__delete__data;
+      return contactData;
     } catch (err) {
       toast.error(err.response.data);
       return rejectWithValue(err.response.data);
@@ -144,7 +169,7 @@ const contactSlice = createSlice({
     },
     [deleteContact.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload.message;
+      // state.error = action.payload.message;
     },
   },
 });

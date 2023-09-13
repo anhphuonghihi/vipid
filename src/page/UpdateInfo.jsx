@@ -1,41 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import GoBack from "../components/GoBack";
 import EditContainer from "../components/EditContainer";
-import { getContactsByUser } from "../redux/slice/contactSlice";
+import { deleteInfo, getInfosByUser } from "../redux/slice/infoSlice";
 import HeaderEdit from "../components/HeaderEdit";
 import { Button } from "@mui/material";
 const UpdateInfo = () => {
   let { id } = useParams();
-  console.log(id);
-  const { userContacts } = useSelector((state) => ({
-    ...state.contact,
+  const navigate = useNavigate();
+  const { userInfos } = useSelector((state) => ({
+    ...state.info,
   }));
   const dispatch = useDispatch();
-  console.log(userContacts.boxs);
-  const [contactData, setContactData] = useState();
+  const [infoData, setInfoData] = useState();
   useEffect(() => {
-    dispatch(getContactsByUser(1));
+    // dispatch(getInfosByUser(1));
   }, []);
   useEffect(() => {
     if (id) {
-      const singleContact = userContacts?.boxs?.find(
-        (contact) => contact.id === id
-      );
-      console.log("singleContact" + singleContact);
-      setContactData({ ...singleContact });
+      const singleInfo = userInfos?.find((info) => info.id === id);
+      setInfoData({ ...singleInfo });
     }
-  }, [id, userContacts]);
-
-  console.log(userContacts.boxs);
+  }, [id, userInfos]);
+  const handleDelete = (id) => {
+    console.log(id);
+    dispatch(deleteInfo({ id }));
+    navigate("/");
+  };
   return (
     <div>
-      <GoBack title={`Sửa ${contactData?.name_box}`} />
+      <GoBack title={`Sửa ${infoData?.name_box}`} />
       <HeaderEdit title="Dịch vụ ban cung cấp là" subtitle="......" />
       <EditContainer />
-      <Button type="submit" fullWidth variant="contained" sx={{ mt: 2, mb: 2 }}>
-        Đăng nhập
+      <Button
+        type="button"
+        fullWidth
+        variant="contained"
+        sx={{ mt: 2, mb: 2 }}
+        onClick={() => handleDelete(id)}
+      >
+        Xóa
       </Button>
     </div>
   );

@@ -14,7 +14,6 @@ const ProtectedRoute = () => {
       <Navigate to={"/login"} />;
     }
   }, [!authUser.token]);
-  console.log(authUser.token);
   const SubmitLogout = () => {
     dispatch(logout());
     return navigate("/login");

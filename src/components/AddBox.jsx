@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 const AddBox = ({ item, index, len }) => {
-  console.log("item.id" + item.id);
   const navigate = useNavigate();
   const addInfo = (id) => {
+    console.log(id);
     navigate(`/info/add/${id}`);
   };
   return (

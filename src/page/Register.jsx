@@ -44,7 +44,6 @@ const Register = () => {
     }),
     onSubmit: (data) => {
       dispatch(register(data));
-      console.log("data", data);
     },
   });
 

@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { logout } from "../redux/slice/authSlice";
 const HeaderAuth = ({ authUser }) => {
   const [menu, setMenu] = useState(false);
-  console.log(menu);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onClickMenu = () => {

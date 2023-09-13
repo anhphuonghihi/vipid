@@ -12,6 +12,7 @@ import UpdatePassword from "../page/UpdatePassword";
 import Layout from "../components/Layout";
 import LayoutAuth from "../components/LayoutAuth";
 import Error404Page from "../page/Error404Page";
+import AddInfoId from "../page/AddInfoId";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
           {
             path: "info/:id",
             element: <UpdateInfo />,
+          },
+          {
+            path: "info/add/:id",
+            element: <AddInfoId />,
           },
           {
             path: "/edit-password",
