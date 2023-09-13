@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteContact, getContactsByUser } from "../redux/slice/contactSlice";
@@ -22,10 +22,20 @@ export default function ListInfo() {
     ...state.info,
   }));
   const dispatch = useDispatch();
-
+  const newinfoData = JSON.parse(localStorage.getItem("infoData"));
+  var [infoData, setData] = useState(newinfoData);
+  console.log(infoData);
   useEffect(() => {
     dispatch(getContactsByUser(1));
     // dispatch(getInfosByUser(1));
+    if (infoData == null) {
+      localStorage.setItem(
+        "infoData",
+        JSON.stringify(info__list__data["boxs"])
+      );
+      const newinfoData = JSON.parse(localStorage.getItem("infoData"));
+      setData(newinfoData);
+    }
   }, []);
   if (loading) {
     return <LinearProgress color="success" />;
@@ -33,15 +43,6 @@ export default function ListInfo() {
   const len = userContacts?.boxs?.length;
   //local
 
-  var infoData = JSON.parse(localStorage.getItem("infoData"));
-
-  if (infoData != null) {
-
-    localStorage.setItem("infoData", JSON.stringify(infoData));
-  } else {
-    localStorage.setItem("infoData", JSON.stringify(info__list__data["boxs"]));
-    localStorage.setItem("infoData", JSON.stringify(infoData));
-  }
   return (
     <>
       <HeaderAuth authUser={authUser} />
