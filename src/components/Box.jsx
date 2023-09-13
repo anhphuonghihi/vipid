@@ -8,7 +8,7 @@ const Box = ({ item, index, len }) => {
   return (
     <div
       onClick={() => editInfo(item.id)}
-      class={`contact__bottom__box ${len === index && "last"}`}
+      class={`contact__bottom__box ${`${len === index && "last"} ${item.id}`}` }
     >
       <div class="contact__bottom__box--icon">
         <i class={`${item.icon}`}></i>

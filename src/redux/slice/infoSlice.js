@@ -52,12 +52,13 @@ export const updateInfo = createAsyncThunk(
   async ({ id, updatedInfoData }, { rejectWithValue }) => {
     try {
       var infos = JSON.parse(localStorage.getItem("infoData"));
+
       if (infos != null) {
         var info = infos.filter((x) => x.id === updatedInfoData.id).pop();
         if (info != null) {
           info.value_box = updatedInfoData.value_box;
         }
-
+        console.log(info);
         localStorage.setItem("infoData", JSON.stringify(infos));
       }
       toast.success("Cập nhận thông tin cá nhân thành công");

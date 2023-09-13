@@ -1,42 +1,63 @@
 [
   {
     "id": "phone",
+    "back__title": "số điện thoại",
+    "title": "Số điện thoại của bạn là",
+    "subtitle": "",
     "icon": "fa-solid fa-phone",
     "name_box": "Số điện thoại",
     "value_box": "Thêm số điện thoại"
   },
   {
     "id": "email",
+    "back__title": "email",
+    "title": "Email của bạn là",
+    "subtitle": "",
     "icon": "fa-solid fa-phone",
     "name_box": "Email",
     "value_box": "Thêm thư điện tử"
   },
   {
     "id": "dia-chi",
+    "back__title": "địa chỉ",
+    "title": "Địa chỉ của bạn là",
+    "subtitle": "Địa chỉ....",
     "icon": "fa-solid fa-phone",
     "name_box": "Địa chỉ",
     "value_box": "Thêm địa chỉ"
   },
   {
     "id": "website",
+    "back__title": "website",
+    "title": "Địa trang website của bạn là",
+    "subtitle": "",
     "icon": "fa-solid fa-phone",
     "name_box": "website",
     "value_box": "Thêm URL WEBSITE"
   },
   {
     "id": "dich-vu",
+    "back__title": "dịch vụ",
+    "title": "Dịch vụ bạn cung cấp là",
+    "subtitle": "",
     "icon": "fa-solid fa-phone",
     "name_box": "Dịch vụ",
     "value_box": "Thêm dịch vụ bạn cung cấp"
   },
   {
     "id": "mxh",
+    "back__title": "mạng xã hội",
+    "title": "Mạng xã hội bạn dùng",
+    "subtitle": "...............",
     "icon": "fa-solid fa-phone",
     "name_box": "Mạng xã hội",
     "value_box": "Thêm mạng xã hội"
   },
   {
     "id": "tk-ngan-hang",
+    "back__title": "tài khoản ngân hàng",
+    "title": "Tài khoản ngân hàng của bạn",
+    "subtitle": "...............",
     "icon": "fa-solid fa-phone",
     "name_box": "Tài khoản ngân hàng",
     "value_box": "Thêm tài khoản ngân hàng"

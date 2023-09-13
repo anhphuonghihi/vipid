@@ -2,54 +2,84 @@
   "boxs": [
     {
       "id": "phone",
+      "back__title": "số điện thoại",
+      "title": "Số điện thoại của bạn là",
+      "subtitle": "",
       "icon": "fa-solid fa-phone",
       "name_box": "Điện thoại",
       "value_box": "0369727895"
     },
     {
       "id": "dv",
+      "back__title": "số điện thoại",
+      "title": "Số điện thoại của bạn là",
+      "subtitle": "",
       "icon": "fa-solid fa-phone",
       "name_box": "Dịch vụ",
       "value_box": "Danh thiếp điện tử VIPID"
     },
     {
       "id": "cd",
+      "back__title": "số điện thoại",
+      "title": "Hướng dẫn cài đặt",
+      "subtitle": "",
       "icon": "fa-solid fa-phone",
       "name_box": "Cài đặt hướng dẫn",
       "value_box": "AB"
     },
     {
       "id": "dia_chi",
+      "back__title": "số điện thoại",
+      "title": "Số làm việc",
+      "subtitle": "",
       "icon": "fa-solid fa-phone",
       "name_box": "Địa chỉ",
       "value_box": "14 Nguyễn Ngọc Nại, Hà Nội"
     },
     {
       "id": "faceboook",
+      "back__title": "số điện thoại",
+      "title": "Facebook của bạn là",
+      "subtitle": "",
       "icon": "fa-brands fa-facebook",
       "name_box": "Facebook",
-      "value_box": "Nguyễn Ngọc Cường"
+      "value_box": "Nguyễn Ngọc Cường",
+      "social_network": true
     },
     {
       "id": "email",
+      "back__title": "email",
+      "title": "Địa chỉ email của bạn là",
+      "subtitle": "",
       "icon": "fa-solid fa-phone",
       "name_box": "Email",
       "value_box": "cuongnnseosgroup@gmail.com"
     },
     {
       "id": "tiktok",
+      "back__title": "tiktok",
+      "title": "Tiktok của bạn là",
+      "subtitle": "",
       "icon": "fa-solid fa-phone",
       "name_box": "TikTok",
-      "value_box": "Nguyễn Ngọc Cường"
+      "value_box": "Nguyễn Ngọc Cường",
+      "social_network": true
     },
     {
       "id": "taikhoan_nganhang",
+      "back__title": "tài khoản ngân hàng",
+      "title": "Tài khoản ngân hàng của bạn là",
+      "subtitle": "",
       "icon": "fa-solid fa-phone",
       "name_box": "Tài khoản ngân hàng",
-      "value_box": "BIDV 02110000023456"
+      "ngan_hang": "BIDV",
+      "value_box": "02110000023456"
     },
     {
       "id": "web",
+      "back__title": "địa chỉ website",
+      "title": "Đường dẫn website là",
+      "subtitle": "",
       "icon": "fa-solid fa-phone",
       "name_box": "Website",
       "value_box": "danhthiepvipid.com"

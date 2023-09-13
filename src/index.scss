@@ -366,3 +366,38 @@ i {
     background: #000;
   }
 }
+
+.list__info {
+  display: flex;
+  flex-direction: column;
+  & > .phone {
+    order: 2;
+  }
+  & > .dv {
+    order: 3;
+  }
+  & > .cd {
+    order: 4;
+  }
+  & > .dia_chi {
+    order: 5;
+  }
+  & > .faceboook {
+    order: 6;
+  }
+  & > .email {
+    order: 7;
+  }
+  & > .tiktok {
+    order: 8;
+  }
+  & > .taikhoan_nganhang {
+    order: 9;
+  }
+  & > .web {
+    order: 10;
+  }
+}
+.login__cup {
+  cursor: pointer;
+}

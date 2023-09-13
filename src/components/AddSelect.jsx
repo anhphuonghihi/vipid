@@ -5,6 +5,7 @@ const AddSelect = ({ handleChange, values, name, dataSelect, label }) => {
   return (
     <div>
       <Select
+        name={name}
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={values}
@@ -12,8 +13,10 @@ const AddSelect = ({ handleChange, values, name, dataSelect, label }) => {
         label="Nhập thông tin"
         onChange={handleChange}
       >
-        {dataSelect.map((item,index) => (
-          <MenuItem value={item} key={index}>{item}</MenuItem>
+        {dataSelect.map((item, index) => (
+          <MenuItem value={item} key={index}>
+            {item}
+          </MenuItem>
         ))}
       </Select>
     </div>

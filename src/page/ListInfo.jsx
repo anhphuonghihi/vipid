@@ -43,10 +43,12 @@ export default function ListInfo() {
         cty={userContacts.cty}
       />
       {/* local */}
-      {infoData &&
-        infoData.map((item, index) => (
-          <Box item={item} key={index} index={index + 1} len={len} />
-        ))}
+      <div class="list__info">
+        {infoData &&
+          infoData.map((item, index) => (
+            <Box item={item} key={index} index={index + 1} len={len} />
+          ))}
+      </div>
       <AddShow />
     </>
   );
