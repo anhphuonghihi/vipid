@@ -4,9 +4,10 @@ import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Layout = () => {
-  const token = useSelector((state) => state.auth.user.token);
+  const token = useSelector((state) => state.auth?.user.token);
+  const background = useSelector((state) => state.counter.background);
   return (
-    <div className="layout__container">
+    <div className={`layout__container ${background}`}>
       {token && (
         <>
           <div class="background"></div>

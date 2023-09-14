@@ -21,11 +21,6 @@ const HeaderAuth = ({ authUser }) => {
       text: "Trang cá nhân",
     },
     {
-      link: "/edit-contact",
-      text: "Thay đổi thông tin cá nhân",
-    },
-
-    {
       link: "/background",
       text: "Giao diện",
     },

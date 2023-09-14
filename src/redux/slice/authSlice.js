@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { redirect } from "react-router-dom";
 const initialState = {
   user: {},
+  email:"",
   isLoading: false,
   isError: false,
 };
@@ -50,7 +51,24 @@ export const register = createAsyncThunk(
     }
   }
 );
+export const forgotPassword = createAsyncThunk(
+  "auth/forgotPassword",
+  async (user, { rejectWithValue }) => {
+    const { email } = user;
+    try {
+      const data = {
+        email: email,
+      };
+      // const response = await API.post("/forgotPassword", data);
+      toast.success("Đã gửi quên mật khẩu thành công");
 
+      return "ok";
+    } catch (err) {
+      toast.error(err.response.data);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 const authSlice = createSlice({
   name: "auth",
   initialState: initialState,
@@ -82,6 +100,18 @@ const authSlice = createSlice({
       state.isError = false;
     });
     builder.addCase(register.rejected, (state) => {
+      state.isLoading = false;
+      state.isError = true;
+    });
+    builder.addCase(forgotPassword.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(forgotPassword.fulfilled, (state, action) => {
+      state.email = action.payload;
+      state.isLoading = false;
+      state.isError = false;
+    });
+    builder.addCase(forgotPassword.rejected, (state) => {
       state.isLoading = false;
       state.isError = true;
     });

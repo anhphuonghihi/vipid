@@ -45,18 +45,19 @@ export const updateContact = createAsyncThunk(
     try {
       //   const response = await API.patch(`/contact/${id}`, updatedContactData);
       //   return response.data;
-      toast.success("Cập nhận thông tin liên hệ thành công");
-      var contacts = JSON.parse(localStorage.getItem('contactData'));
+
+      var contacts = JSON.parse(localStorage.getItem("contactData"));
+
       if (contacts != null) {
-          var contact = contacts.filter((x) => x.id == updatedContactData.id).pop();
-          if (contact != null) {
-              contact.name = updatedContactData.name;
-              contact.email = updatedContactData.email;
-              contact.gender = updatedContactData.gender;
-              contact.status = updatedContactData.status;
-          }
-          localStorage.setItem('contactData', JSON.stringify(contacts));
+        // var contact = contacts.filter((x) => x.id === 2).pop();
+        // console.log("contacts" + contact);
+        var contact = contacts.filter((x) => console.log(x)).pop();
+        if (contact != null) {
+          contact.img = updatedContactData.name;
+        }
+        localStorage.setItem("contactData", JSON.stringify(contacts));
       }
+      toast.success("Cập nhận thông tin liên hệ thành công");
       return contacts;
     } catch (err) {
       toast.error(err.response.data);
@@ -150,7 +151,7 @@ const contactSlice = createSlice({
     },
     [updateContact.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload.message;
+      // state.error = action.payload.message;
     },
     [deleteContact.pending]: (state, action) => {
       state.loading = true;

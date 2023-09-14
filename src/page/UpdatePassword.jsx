@@ -33,6 +33,7 @@ const UpdatePassword = () => {
             <div className="loginPassword">
               <TextField
                 type="password"
+                fullWidth
                 placeholder="Mật khẩu cũ"
                 required
                 value={oldPassword}
@@ -42,7 +43,9 @@ const UpdatePassword = () => {
 
             <div className="loginPassword">
               <TextField
+                fullWidth
                 type="password"
+                label="Mật khẩu mới"
                 placeholder="Mật khẩu mới"
                 required
                 value={newPassword}
@@ -58,7 +61,13 @@ const UpdatePassword = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
-            <Button type="submit" value="Đổi" className="updatePasswordBtn" />
+            <Button
+              fullWidth
+              variant="contained"
+              type="submit"
+              value="Đổi"
+              className="updatePasswordBtn"
+            />
           </form>
         </div>
       </div>
