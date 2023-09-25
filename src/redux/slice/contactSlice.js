@@ -2,14 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../API";
 import { toast } from "react-toastify";
 
-
 export const getContactsByUser = createAsyncThunk(
   "contact/getContactsByUser",
   async (_, { rejectWithValue }) => {
     try {
       const response = await API.get(`/wp2023/v1/profile/`);
-      
-      return response.data;
+
+      return response.data.data[0];
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -18,32 +17,20 @@ export const getContactsByUser = createAsyncThunk(
 
 export const updateContact = createAsyncThunk(
   "contact/updateContact",
-  async ({ id, updatedContactData }, { rejectWithValue }) => {
+  async (fullname, { rejectWithValue }) => {
     try {
-      //   const response = await API.patch(`/contact/${id}`, updatedContactData);
-      //   return response.data;
-
-      var contacts = JSON.parse(localStorage.getItem("contactData"));
-
-      if (contacts != null) {
-        // var contact = contacts.filter((x) => x.id === 2).pop();
-        // console.log("contacts" + contact);
-        var contact = contacts.filter((x) => console.log(x)).pop();
-        if (contact != null) {
-          contact.img = updatedContactData.name;
-        }
-        localStorage.setItem("contactData", JSON.stringify(contacts));
-      }
+      const response = await API.post(`/wp2023/v1/profile/`, {
+        fullname: fullname,
+      });
+      // console.log(response);
       toast.success("Cập nhận thông tin liên hệ thành công");
-      return contacts;
+      return response.data;
     } catch (err) {
       toast.error(err.response.data);
       return rejectWithValue(err.response.data);
     }
   }
 );
-
-
 
 const contactSlice = createSlice({
   name: "contact",

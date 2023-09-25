@@ -37,7 +37,7 @@ export const getInfosByUser = createAsyncThunk(
         `http://phuonghole.com.test/wp-json/wp2023/v1/contact__list__user/`
       );
 
-      return response.data;
+      return response.data.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
