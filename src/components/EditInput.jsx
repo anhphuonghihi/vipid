@@ -13,6 +13,7 @@ const EditInput = ({ handleChange, values, name, label }) => {
         autoFocus
         onChange={handleChange}
         value={values}
+        sx={{ mt: 1, mb: 1 }}
       />
     </div>
   );

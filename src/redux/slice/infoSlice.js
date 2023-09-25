@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../API";
 import { toast } from "react-toastify";
 import info__list__data from "../../data/info__list.json";
+import axios from "axios";
 export const createInfo = createAsyncThunk(
   "info/createInfo",
   async ({ createInfotData }, { rejectWithValue }) => {
@@ -30,18 +31,14 @@ export const createInfo = createAsyncThunk(
 
 export const getInfosByUser = createAsyncThunk(
   "info/getInfosByUser",
-  async (userId, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      //   const response = await API.get(`/info/userInfos/${userId}`);
-      //   return response.data;
-      localStorage.setItem(
-        "infoData",
-        JSON.stringify(info__list__data["boxs"])
+      const response = await API.get(
+        `http://phuonghole.com.test/wp-json/wp2023/v1/contact__list__user/`
       );
-      var infoData = JSON.parse(localStorage.getItem("infoData"));
-      return infoData;
+
+      return response.data;
     } catch (err) {
-      toast.error(err.response.data);
       return rejectWithValue(err.response.data);
     }
   }
@@ -131,7 +128,7 @@ const infoSlice = createSlice({
     },
     [getInfosByUser.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload.message;
+      // state.error = action.payload.message;
     },
 
     [updateInfo.pending]: (state, action) => {

@@ -1,39 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../API";
 import { toast } from "react-toastify";
-import contact__list__data from "../../data/contact__list.json";
-export const createContact = createAsyncThunk(
-  "contact/createContact",
-  async ({ createContacttData }, { rejectWithValue }) => {
-    try {
-      //   const response = await API.post("/contact", createContacttData);
-      //   return response.data;
-      var contactData = JSON.parse(localStorage.getItem("contactData"));
-      contactData.push(createContacttData);
-      localStorage.setItem("contactData", JSON.stringify(contactData));
-      toast.success("Thêm thông tin liên hệ thành công");
-      return contactData;
-    } catch (err) {
-      toast.error(err.response.data);
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
+
 
 export const getContactsByUser = createAsyncThunk(
   "contact/getContactsByUser",
-  async (userId, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      //   const response = await API.get(`/contact/userContacts/${userId}`);
-      //   return response.data;
-      localStorage.setItem(
-        "contactData",
-        JSON.stringify(contact__list__data["contact"][userId])
-      );
-      var contactData = JSON.parse(localStorage.getItem("contactData"));
-      return contactData;
+      const response = await API.get(`/wp2023/v1/profile/`);
+      
+      return response.data;
     } catch (err) {
-      toast.error(err.response.data);
       return rejectWithValue(err.response.data);
     }
   }
@@ -66,29 +43,7 @@ export const updateContact = createAsyncThunk(
   }
 );
 
-export const deleteContact = createAsyncThunk(
-  "contact/deleteContact",
-  async ({ id }, { rejectWithValue }) => {
-    try {
-      //   const response = await API.delete(`/contact/${id}`);
-      //   return response.data;
-      var contactData = JSON.parse(localStorage.getItem("contactData"));
-      if (contactData != null) {
-        const deletedata = contactData.boxs.findIndex((a) => a.id === id);
-        console.log(contactData);
-        contactData.splice(deletedata, 1);
-        console.log(contactData);
-        localStorage.setItem("contactData", JSON.stringify(contactData));
-      }
 
-      toast.success("Xóa thông tin liên hệ thành công");
-      return contactData;
-    } catch (err) {
-      toast.error(err.response.data);
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
 
 const contactSlice = createSlice({
   name: "contact",
@@ -109,17 +64,6 @@ const contactSlice = createSlice({
     },
   },
   extraReducers: {
-    [createContact.pending]: (state, action) => {
-      state.loading = true;
-    },
-    [createContact.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.contacts = [action.payload];
-    },
-    [createContact.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload.message;
-    },
     [getContactsByUser.pending]: (state, action) => {
       state.loading = true;
     },
@@ -129,7 +73,7 @@ const contactSlice = createSlice({
     },
     [getContactsByUser.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload.message;
+      // state.error = action.payload.message;
     },
 
     [updateContact.pending]: (state, action) => {
@@ -150,25 +94,6 @@ const contactSlice = createSlice({
       }
     },
     [updateContact.rejected]: (state, action) => {
-      state.loading = false;
-      // state.error = action.payload.message;
-    },
-    [deleteContact.pending]: (state, action) => {
-      state.loading = true;
-    },
-    [deleteContact.fulfilled]: (state, action) => {
-      state.loading = false;
-      const {
-        arg: { id },
-      } = action.meta;
-      if (id) {
-        state.userContacts = state.userContacts.filter(
-          (item) => item._id !== id
-        );
-        state.contacts = state.contacts.filter((item) => item._id !== id);
-      }
-    },
-    [deleteContact.rejected]: (state, action) => {
       state.loading = false;
       // state.error = action.payload.message;
     },

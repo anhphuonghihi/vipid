@@ -12,6 +12,7 @@ const AddSelect = ({ handleChange, values, name, dataSelect, label }) => {
         fullWidth
         label="Nhập thông tin"
         onChange={handleChange}
+        sx={{ mt: 1, mb: 1 }}
       >
         {dataSelect.map((item, index) => (
           <MenuItem value={item} key={index}>

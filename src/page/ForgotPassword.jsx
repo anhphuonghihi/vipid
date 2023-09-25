@@ -25,11 +25,10 @@ const ForgotPassword = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .email("Vui lòng nhập đúng định dạng email")
-        .required("Bắt buộc nhập email")
+        .required("Bắt buộc nhập email"),
     }),
     onSubmit: (data) => {
       dispatch(forgotPassword(data));
-      navigate("/");
     },
   });
 
@@ -51,6 +50,7 @@ const ForgotPassword = () => {
             autoFocus
             onChange={formik.handleChange}
             value={formik.values.email}
+            sx={{ mt: 1, mb: 1 }}
           />
           {formik.errors.email && formik.touched.email && (
             <p className="help is-danger">{formik.errors.email}</p>

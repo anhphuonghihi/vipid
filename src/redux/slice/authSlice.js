@@ -1,12 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import login__data from "../../data/login.json";
-import register__data from "../../data/register.json";
+
 import { toast } from "react-toastify";
-import { redirect } from "react-router-dom";
+import API from "../../API";
 const initialState = {
   user: {},
-  email:"",
+  email: "",
   isLoading: false,
   isError: false,
 };
@@ -15,14 +13,14 @@ export const login = createAsyncThunk(
   "auth/login",
   async ({ name, password }, { rejectWithValue }) => {
     try {
-      const data = { username: name, password: password };
-      // const response = await API.post("/login", data);
-      console.log(login__data.token);
-      localStorage.setItem("token", login__data.token);
-      toast.success("Đăng nhập thành công");
-      return login__data;
+      const response = await API.post(
+        `/jwt-auth/v1/token?username=${name}&password=${password}`
+      );
+      localStorage.setItem("token", response.data.token);
+
+      return response.data;
     } catch (err) {
-      toast.error(err.response.data);
+      toast.error("Vui lòng nhập lại tài khoản và mật khẩu");
       return rejectWithValue(err.response.data);
     }
   }
@@ -31,22 +29,27 @@ export const login = createAsyncThunk(
 export const register = createAsyncThunk(
   "auth/register",
   async (user, { rejectWithValue }) => {
-    const { lastname, name, code, email, password, confirmPassword } = user;
-    // const response = await API.post("/register", data);
+    const { lastname, name, code, email, password } = user;
+
     try {
       const data = {
-        lastname: lastname,
-        username: name,
-        code: code,
+        fullname: lastname,
+        nickname: name,
+        ma_kh: code,
         email: email,
-        password: password,
-        confirmPassword: confirmPassword,
+        password__user: password,
       };
-      toast.success("Đăng kí thành công");
+      await API.post("/wp2023/v1/register/", data).then((res) => {
+        console.log(res.data);
+        if (res.data.code == 200) {
+          toast.success("Đăng kí thành công");
+        } else {
+          toast.error(res.data.msg);
+        }
+      });
 
-      return register__data;
+      return true;
     } catch (err) {
-      toast.error(err.response.data);
       return rejectWithValue(err.response.data);
     }
   }
@@ -57,11 +60,18 @@ export const forgotPassword = createAsyncThunk(
     const { email } = user;
     try {
       const data = {
-        email: email,
+        login: email,
       };
-      // const response = await API.post("/forgotPassword", data);
-      toast.success("Đã gửi quên mật khẩu thành công");
-
+      await API.post("/wp2023/v1/resetpassword/", data).then(
+        (res) => {
+          console.log(res.data);
+          if (res.data.code == 200) {
+            toast.success("Đã gửi thông tin");
+          } else {
+            toast.error(res.data.msg);
+          }
+        }
+      );
       return "ok";
     } catch (err) {
       toast.error(err.response.data);
@@ -75,6 +85,9 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.user = {};
+      localStorage.removeItem('token');
+      localStorage.removeItem('infoData');
+      localStorage.removeItem('username');
     },
   },
   extraReducers: (builder) => {

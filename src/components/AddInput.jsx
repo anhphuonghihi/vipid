@@ -13,6 +13,7 @@ const AddInput = ({ handleChange, values, name }) => {
         autoFocus
         onChange={handleChange}
         value={values}
+        sx={{ mt: 1, mb: 1 }}
       />
     </div>
   );

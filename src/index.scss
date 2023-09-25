@@ -1,15 +1,24 @@
 :root {
   --background-color: #fff;
   --text-color: #1a1a1a;
+  --background-input: #e1f0ff;
+  --text-input: #1a1a1a;
+  --background-button: #1976d2;
 }
 
 .theme-dark {
   --background-color: #1a1a1a;
   --text-color: #fff;
+  --background-button: #1976d2;
+  --background-input: #e1f0ff;
+  --text-input: #1a1a1a;
 }
 .theme-light {
   --background-color: #fff;
   --text-color: #1a1a1a;
+  --background-input: #e1f0ff;
+  --background-button: #1976d2;
+  --text-input: #1a1a1a;
 }
 * {
   box-sizing: border-box;
@@ -17,10 +26,9 @@
   padding: 0;
 }
 .layout__container {
-  max-width: 375px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-
 }
 @media only screen and (max-width: 450px) {
   .layout__container {
@@ -68,7 +76,6 @@
       gap: 20px;
       input {
         border-radius: 10px;
-        background: var(--text-color);
         border: none !important;
       }
       input:hover {
@@ -240,12 +247,16 @@ body .avatar img {
 }
 
 .contact__bottom__box {
+  background: var(--text-color);
   display: flex;
   align-items: center;
   padding-top: 11.5px;
   padding-bottom: 14.5px;
   border-bottom: 1px solid var(--text-color);
   gap: 16px;
+  border-radius: 50px;
+  padding: 10px 25px;
+  margin: 10px 0;
 }
 .contact__bottom__box:hover {
   cursor: pointer;
@@ -309,9 +320,8 @@ body .layout__container .background__img {
   bottom: 0;
   z-index: -1;
   background-color: var(--text-color);
-  opacity: 0.5;
+  opacity: 0.7;
 }
-
 
 @media only screen and (max-width: 450px) {
   body .layout__container .background {
@@ -336,7 +346,6 @@ body .logo__avatar img {
   height: 150px;
   flex-shrink: 0;
   border-radius: 50%;
-  box-shadow: 0px 5px 8px -3px var(--background-color);
 }
 
 #root {
@@ -360,7 +369,7 @@ i {
   border: none;
   position: fixed;
   bottom: 41px;
-  right: 776px;
+  right: 860px;
   border: 2px solid var(--background-color);
   border-radius: 50%;
   background: var(--text-color);
@@ -385,34 +394,85 @@ i {
 .list__info {
   display: flex;
   flex-direction: column;
-  & > .phone {
-    order: 2;
-  }
-  & > .dv {
+  & > .position {
     order: 3;
   }
-  & > .cd {
+  & > .cty {
     order: 4;
   }
-  & > .dia_chi {
+  & > .phone {
     order: 5;
   }
-  & > .faceboook {
+  & > .dv {
     order: 6;
   }
-  & > .email {
+  & > .cd {
     order: 7;
   }
-  & > .tiktok {
+  & > .dia_chi {
     order: 8;
   }
-  & > .taikhoan_nganhang {
+  & > .faceboook {
     order: 9;
   }
-  & > .web {
+  & > .email {
     order: 10;
+  }
+  & > .tiktok {
+    order: 11;
+  }
+  & > .taikhoan_nganhang {
+    order: 12;
+  }
+  & > .web {
+    order: 13;
+  }
+  & > .website {
+    order: 13;
   }
 }
 .login__cup {
   cursor: pointer;
+}
+.layout__container .login__page a:hover {
+  color: #1a1a1a;
+}
+
+.header__back {
+  color: var(--background-color);
+}
+.title {
+  color: var(--background-color);
+}
+.subtitle {
+  color: var(--background-color);
+}
+.add__info {
+  color: var(--background-color);
+}
+input,.MuiSelect-select {
+  background: var(--background-input) !important;
+  color: var(--text-input) !important;
+}
+
+.header__back {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.add__info {
+  margin: 10px 0;
+}
+
+.title {
+  margin: 10px 0;
+}
+
+.subtitle {
+  margin: 5px 0;
+}
+
+body .logo__avatar{
+  margin-bottom: 40px;
 }

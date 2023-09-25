@@ -3,16 +3,12 @@
     {
       "id": 1,
       "img": "http://localhost:3000/static/media/avatar.eb4547a9f08347775ec9.png",
-      "name": "Nguyễn Ngọc Cường",
-      "position": "Sale Online",
-      "cty": "CEO GROUP"
+      "name": "Nguyễn Ngọc Cường"
     },
     {
       "id": 2,
       "img": "http://localhost:3000/static/media/avatar.eb4547a9f08347775ec9.png",
-      "name": "Nguyễn Ngọc Cường",
-      "position": "Sale Online",
-      "cty": "CEO GROUP"
+      "name": "Nguyễn Ngọc Cường"
     }
   ]
 }

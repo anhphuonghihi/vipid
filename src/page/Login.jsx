@@ -15,7 +15,6 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/slice/authSlice";
 import { toast } from "react-toastify";
-import Intro from "../page/Intro";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,74 +40,53 @@ const Login = () => {
       navigate("/");
     },
   });
-  // useEffect(() => {
-  //   if (isError) {
-  //     toast.error(isError);
-  //   }
-  // }, [isError]);
-  const [demo, setDemo] = useState(false);
-  const handleDemo = (e) => setDemo(!demo);
-  const { pathname } = useLocation();
-  useEffect(() => {
-    if (pathname === "/login") {
-      setDemo(true);
-    }
-  }, [pathname]);
 
   return (
-    <>
-      {demo ? (
-        <div className="login__page">
-          <Header login />
-          <div className="text__box__login">
-            <Title title="Đăng nhập" />
-            <SubTitle subtitle="Nhập tài khoản và mật khẩu của bạn" />
-          </div>
-          <form className="form__login" onSubmit={formik.handleSubmit}>
-            <TextField
-              autoComplete="name"
-              name="name"
-              fullWidth
-              id="name"
-              label="Tên đăng nhập"
-              autoFocus
-              onChange={formik.handleChange}
-              value={formik.values.name}
-            />
-            {formik.errors.name && formik.touched.name && (
-              <p className="help is-danger">{formik.errors.name}</p>
-            )}
-            <TextField
-              fullWidth
-              name="password"
-              label="Mật khẩu"
-              type="password"
-              id="password"
-              autoComplete="new-password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.password && formik.touched.password && (
-              <p className="help is-danger">{formik.errors.password}</p>
-            )}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 2, mb: 2 }}
-            >
-              Đăng nhập
-            </Button>
-          </form>
-          <Link to="/forgot-password">Quên mật khẩu</Link>
-          <Link to="/demo">Demo</Link>
-        </div>
-      ) : (
-        <>
-          <Intro handleDemo={handleDemo} />
-        </>
-      )}
-    </>
+    <div className="login__page">
+      <Header login />
+      <div className="text__box__login">
+        <Title title="Đăng nhập" />
+        <SubTitle subtitle="Nhập tài khoản và mật khẩu của bạn" />
+      </div>
+      <form className="form__login" onSubmit={formik.handleSubmit}>
+        <TextField
+          autoComplete="name"
+          name="name"
+          fullWidth
+          id="name"
+          label="Tên đăng nhập"
+          autoFocus
+          onChange={formik.handleChange}
+          value={formik.values.name}
+          sx={{ mt: 1, mb: 1 }}
+                  />
+        {formik.errors.name && formik.touched.name && (
+          <p className="help is-danger">{formik.errors.name}</p>
+        )}
+        <TextField
+          fullWidth
+          name="password"
+          label="Mật khẩu"
+          type="password"
+          id="password"
+          autoComplete="new-password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+        />
+        {formik.errors.password && formik.touched.password && (
+          <p className="help is-danger">{formik.errors.password}</p>
+        )}
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 2, mb: 2 }}
+        >
+          Đăng nhập
+        </Button>
+      </form>
+      <Link to="/forgot-password">Quên mật khẩu</Link>
+    </div>
   );
 };
 

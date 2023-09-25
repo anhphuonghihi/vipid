@@ -27,6 +27,7 @@ const EditContainer = () => {
         autoFocus
         onChange={formik.handleChange}
         value={formik.values.name}
+        sx={{ mt: 1, mb: 1 }}
       />
       {formik.errors.name && formik.touched.name && (
         <p className="help is-danger">{formik.errors.name}</p>

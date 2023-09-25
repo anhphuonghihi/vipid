@@ -38,6 +38,7 @@ const UpdatePassword = () => {
                 required
                 value={oldPassword}
                 onChange={(e) => setOldPassword(e.target.value)}
+                sx={{ mt: 1, mb: 1 }}
               />
             </div>
 
@@ -50,24 +51,28 @@ const UpdatePassword = () => {
                 required
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
+                sx={{ mt: 1, mb: 1 }}
               />
             </div>
             <div className="loginPassword">
               <TextField
                 type="password"
+                fullWidth
                 placeholder="Xác nhận mật khẩu"
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                sx={{ mt: 1, mb: 1 }}
               />
             </div>
             <Button
               fullWidth
               variant="contained"
-              type="submit"
-              value="Đổi"
-              className="updatePasswordBtn"
-            />
+              type="button"
+              sx={{ mt: 2, mb: 2 }}
+            >
+              Đổi
+            </Button>
           </form>
         </div>
       </div>
