@@ -6,8 +6,12 @@ import "react-toastify/dist/ReactToastify.css";
 const Layout = () => {
   const token = useSelector((state) => state.auth?.user.token);
   const background = useSelector((state) => state.counter.background);
+  const { userContacts } = useSelector((state) => ({
+    ...state.contact,
+  }));
+  const theme = localStorage.getItem("background");
   return (
-    <div className={`layout__container ${background}`}>
+    <div className={`layout__container ${theme?theme:"theme-dark"}`}>
       {token && (
         <>
           <div class="background"></div>

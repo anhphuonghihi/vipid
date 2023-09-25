@@ -9,7 +9,6 @@ import { Button } from "@mui/material";
 import EditInput from "../components/EditInput";
 import { getContactsByUser, updateContact } from "../redux/slice/contactSlice";
 const UpdateInfoName = () => {
-  let { id } = useParams();
   const navigate = useNavigate();
   const { userContacts } = useSelector((state) => ({
     ...state.contact,
@@ -21,7 +20,8 @@ const UpdateInfoName = () => {
     dispatch(getInfosByUser());
   }, [dispatch]);
 
-  const handleEdit = ({ fullname }) => {
+  const handleEdit = (e, { fullname }) => {
+    e.preventDefault();
     console.log("value" + fullname);
     dispatch(updateContact(fullname));
     dispatch(getContactsByUser());
@@ -29,7 +29,7 @@ const UpdateInfoName = () => {
       navigate("/");
     }, 500);
   };
-  const [input, setInput] = useState(userContacts.user_nicename);
+  const [input, setInput] = useState(userContacts.display_name);
   const handleInput = (e) => setInput(e.target.value);
   return (
     <div>
@@ -39,16 +39,16 @@ const UpdateInfoName = () => {
         <EditInput
           handleChange={handleInput}
           values={input}
-          name={id}
+          name="name"
           label="Họ tên"
         />
         <Button
-          type="button"
+          type="submit"
           fullWidth
           variant="contained"
           sx={{ mt: 2, mb: 2 }}
-          onClick={() =>
-            handleEdit({
+          onClick={(e) =>
+            handleEdit(e, {
               fullname: input,
             })
           }

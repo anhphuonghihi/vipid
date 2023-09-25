@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import API from "../../API";
 const initialState = {
   background: "",
   isLoading: false,
@@ -11,7 +12,10 @@ export const backgroundChange = createAsyncThunk(
   async (background, { rejectWithValue }) => {
     try {
       localStorage.setItem("background", background);
-      toast.success("Thay đổi ảnh thành công");
+      await API.post(`/wp2023/v1/profile/`, {
+        background__color: background,
+      });
+      toast.success("Thay đổi giao diện thành công");
       return background;
     } catch (err) {
       toast.error(err.response.data);

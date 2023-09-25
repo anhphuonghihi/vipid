@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import Title from "../components/Title";
 import { Button, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import isEmailValidator from "validator/lib/isEmail";
@@ -10,6 +10,7 @@ import { register } from "../redux/slice/authSlice";
 import { useDispatch } from "react-redux";
 const Register = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       lastname: "",
@@ -44,6 +45,7 @@ const Register = () => {
     }),
     onSubmit: (data) => {
       dispatch(register(data));
+      navigate("/login");
     },
   });
 

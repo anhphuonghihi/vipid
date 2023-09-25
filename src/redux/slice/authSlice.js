@@ -62,19 +62,39 @@ export const forgotPassword = createAsyncThunk(
       const data = {
         login: email,
       };
-      await API.post("/wp2023/v1/resetpassword/", data).then(
-        (res) => {
-          console.log(res.data);
-          if (res.data.code == 200) {
-            toast.success("Đã gửi thông tin");
-          } else {
-            toast.error(res.data.msg);
-          }
+      await API.post("/wp2023/v1/resetpassword/", data).then((res) => {
+        console.log(res.data);
+        if (res.data.code == 200) {
+          toast.success("Đã gửi thông tin");
+        } else {
+          toast.error(res.data.msg);
         }
-      );
+      });
       return "ok";
     } catch (err) {
       toast.error(err.response.data);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+export const updatePassword = createAsyncThunk(
+  "auth/updatePassword",
+  async ({ crr_password__user, password__user_new }, { rejectWithValue }) => {
+    try {
+      const data = {
+        crr_password__user: crr_password__user,
+        password__user_new: password__user_new,
+      };
+      await API.post("wp2023/v1/changepassword/", data).then((res) => {
+        console.log(res.data.code);
+        if (res.data.code == 200) {
+          toast.success("Đổi mật khẩu thành công");
+        } else {
+          toast.error(res.data.msg);
+        }
+      });
+      return "ok";
+    } catch (err) {
       return rejectWithValue(err.response.data);
     }
   }
@@ -85,9 +105,9 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.user = {};
-      localStorage.removeItem('token');
-      localStorage.removeItem('infoData');
-      localStorage.removeItem('username');
+      localStorage.removeItem("token");
+      localStorage.removeItem("infoData");
+      localStorage.removeItem("username");
     },
   },
   extraReducers: (builder) => {
@@ -125,6 +145,17 @@ const authSlice = createSlice({
       state.isError = false;
     });
     builder.addCase(forgotPassword.rejected, (state) => {
+      state.isLoading = false;
+      state.isError = true;
+    });
+    builder.addCase(updatePassword.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(updatePassword.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+    });
+    builder.addCase(updatePassword.rejected, (state) => {
       state.isLoading = false;
       state.isError = true;
     });

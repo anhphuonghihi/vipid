@@ -1,19 +1,12 @@
-:root {
-  --background-color: #fff;
-  --text-color: #1a1a1a;
-  --background-input: #e1f0ff;
-  --text-input: #1a1a1a;
-  --background-button: #1976d2;
-}
 
-.theme-dark {
+.theme-light {
   --background-color: #1a1a1a;
   --text-color: #fff;
   --background-button: #1976d2;
   --background-input: #e1f0ff;
   --text-input: #1a1a1a;
 }
-.theme-light {
+.theme-dark {
   --background-color: #fff;
   --text-color: #1a1a1a;
   --background-input: #e1f0ff;

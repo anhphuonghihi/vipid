@@ -22,8 +22,7 @@ export const updateContact = createAsyncThunk(
       const response = await API.post(`/wp2023/v1/profile/`, {
         fullname: fullname,
       });
-      // console.log(response);
-      toast.success("Cập nhận thông tin liên hệ thành công");
+      toast.success("Cập nhận thông tin cá nhân thành công");
       return response.data;
     } catch (err) {
       toast.error(err.response.data);
@@ -68,17 +67,6 @@ const contactSlice = createSlice({
     },
     [updateContact.fulfilled]: (state, action) => {
       state.loading = false;
-      const {
-        arg: { id },
-      } = action.meta;
-      if (id) {
-        state.userContacts = state.userContacts.map((item) =>
-          item._id === id ? action.payload : item
-        );
-        state.contacts = state.contacts.map((item) =>
-          item._id === id ? action.payload : item
-        );
-      }
     },
     [updateContact.rejected]: (state, action) => {
       state.loading = false;

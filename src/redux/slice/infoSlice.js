@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../API";
 import { toast } from "react-toastify";
-import info__list__data from "../../data/info__list.json";
-import axios from "axios";
+
 export const createInfo = createAsyncThunk(
   "info/createInfo",
   async ({ createInfotData }, { rejectWithValue }) => {
@@ -46,20 +45,13 @@ export const getInfosByUser = createAsyncThunk(
 
 export const updateInfo = createAsyncThunk(
   "info/updateInfo",
-  async ({ id, updatedInfoData }, { rejectWithValue }) => {
+  async ({ id, value_box }, { rejectWithValue }) => {
     try {
-      var infos = JSON.parse(localStorage.getItem("infoData"));
-
-      if (infos != null) {
-        var info = infos.filter((x) => x.id === updatedInfoData.id).pop();
-        if (info != null) {
-          info.value_box = updatedInfoData.value_box;
-        }
-        console.log(info);
-        localStorage.setItem("infoData", JSON.stringify(infos));
-      }
-      toast.success("Cập nhận thông tin cá nhân thành công");
-      return infos;
+      const response = await API.post(`wp2023/v1/contact__list/${id}`, {
+        value_box: value_box,
+      });
+      toast.success("Cập nhận thông liên hệ thành công");
+      return response.data;
     } catch (err) {
       toast.error(err.response.data);
       return rejectWithValue(err.response.data);
@@ -71,17 +63,9 @@ export const deleteInfo = createAsyncThunk(
   "info/deleteInfo",
   async ({ id }, { rejectWithValue }) => {
     try {
-      //   const response = await API.delete(`/info/${id}`);
-      //   return response.data;
-      var infoData = JSON.parse(localStorage.getItem("infoData"));
-      if (infoData != null) {
-        const deletedata = infoData.findIndex((a) => a.id === id);
-        infoData.splice(deletedata, 1);
-        localStorage.setItem("infoData", JSON.stringify(infoData));
-      }
-
-      toast.success("Xóa thông tin cá nhân thành công");
-      return infoData;
+      console.log(id);
+      const response = await API.delete(`wp2023/v1/contact__list/${id}`);
+      return response.data;
     } catch (err) {
       toast.error(err.response.data);
       return rejectWithValue(err.response.data);

@@ -47,7 +47,7 @@ export default function ListInfo() {
             class="contact__bottom__box--content contact__phone"
             id="contact__phone"
           >
-            {userContacts.user_nicename}
+            {userContacts.display_name}
           </div>
         </div>
       </div>
