@@ -3,11 +3,10 @@ import LogoAvatar from "../asset/img/avatar.png";
 import { Box, Modal, Typography } from "@mui/material";
 import ChangeAvatar from "./ChangeAvatar";
 const Avatar = ({ avatar }) => {
-  console.log(avatar);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [file, setFile] = useState(avatar);
+  const [file, setFile] = useState("");
   const handleChange = function loadFile(event) {
     if (event.target.files.length > 0) {
       const file = URL.createObjectURL(event.target.files[0]);
@@ -26,7 +25,7 @@ const Avatar = ({ avatar }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <ChangeAvatar avatar={avatar} handleChange={handleChange} handleClose={handleClose}/>
+        <ChangeAvatar file={file} avatar={avatar} handleChange={handleChange} handleClose={handleClose}/>
       </Modal>
     </div>
   );

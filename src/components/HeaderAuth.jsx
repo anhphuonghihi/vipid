@@ -32,6 +32,10 @@ const HeaderAuth = ({ authUser }) => {
       link: "/edit-password",
       text: "Đổi mật khẩu",
     },
+    {
+      link: "/qrcode",
+      text: "Qrcode",
+    },
   ];
   return (
     <>

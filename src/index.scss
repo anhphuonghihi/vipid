@@ -314,7 +314,9 @@ body .layout__container .background__img {
   background-color: var(--text-color);
   opacity: 0.7;
 }
-
+body .layout__container .background__img.demo{
+  opacity: 0.5;
+}
 @media only screen and (max-width: 450px) {
   body .layout__container .background {
     padding: 7vw;
@@ -493,3 +495,16 @@ body .logo__avatar {
 .MuiMenu-list {
   text-transform: capitalize;
 }
+
+.input__group {
+  margin-top: 2em;
+}
+.input__group button {
+  border: unset;
+  background: hsl (231, 77%, 90%);
+  padding: 1em 0.75em;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+

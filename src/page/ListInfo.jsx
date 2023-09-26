@@ -12,7 +12,7 @@ import { getInfosByUser } from "../redux/slice/infoSlice";
 import { LinearProgress } from "@mui/material";
 export default function ListInfo() {
   const authUser = useSelector((state) => state.auth.user);
-  const { userContacts , loading} = useSelector((state) => ({
+  const { userContacts, loading } = useSelector((state) => ({
     ...state.contact,
   }));
   const { userInfos } = useSelector((state) => ({
@@ -32,8 +32,8 @@ export default function ListInfo() {
       navigate(`/info/${id}`);
     }
   };
-  const len = userContacts?.boxs?.length;
-
+  const len = userContacts?.length;
+  console.log(userContacts);
   return (
     <>
       <HeaderAuth authUser={authUser} />

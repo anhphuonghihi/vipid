@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import API from "../API";
 import { getContactsByUser } from "../redux/slice/contactSlice";
 import { getInfosByUser } from "../redux/slice/infoSlice";
-const ChangeAvatar = ({ avatar, handleChange, handleClose }) => {
+const ChangeAvatar = ({ avatar, handleChange, handleClose, file }) => {
   const dispatch = useDispatch();
   const handleEdit = async (avatar) => {
     try {
@@ -21,10 +21,6 @@ const ChangeAvatar = ({ avatar, handleChange, handleClose }) => {
     dispatch(getContactsByUser());
     dispatch(getInfosByUser());
   };
-  useEffect(() => {
-    dispatch(getContactsByUser());
-    dispatch(getInfosByUser());
-  }, [dispatch]);
 
   return (
     <div className="mode_css">
@@ -41,14 +37,14 @@ const ChangeAvatar = ({ avatar, handleChange, handleClose }) => {
           aria-label="upload picture"
           component="span"
         >
-          <img src={avatar} alt="Logo" />
+          <img src={file ? file : avatar} alt="Logo" />
         </IconButton>
         <Button
           type="submit"
           fullWidth
           variant="contained"
           sx={{ mt: 2, mb: 2 }}
-          onClick={() => handleEdit(avatar)}
+          onClick={() => handleEdit(file)}
         >
           Lưu thông tin
         </Button>

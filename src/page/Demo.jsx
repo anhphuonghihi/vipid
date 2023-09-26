@@ -27,13 +27,13 @@ const Demo = () => {
       seTheme(userInfo[0]?.user_nicename);
     };
     getData();
-  }, [userContact, username]);
+  }, [userContact, userInfo, username]);
   const len = userContact?.length;
 
   return (
     <div className={`layout__container ${theme ? theme : "theme-dark"}`}>
       <div class="background"></div>
-      <div class="background__img"></div>
+      <div class="background__img demo"></div>
       <div class="logo__avatar">
         <div>
           <img
@@ -68,6 +68,7 @@ const Demo = () => {
             const substring = "tk";
             return (
               <div
+                key={index}
                 class={`contact__bottom__box ${`${len === index && "last"} ${
                   item.id
                 }`}`}
