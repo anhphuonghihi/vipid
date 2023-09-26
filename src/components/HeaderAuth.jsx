@@ -25,6 +25,10 @@ const HeaderAuth = ({ authUser }) => {
       text: "Giao diện",
     },
     {
+      link: "/contact/phuonghole",
+      text: "Demo",
+    },
+    {
       link: "/edit-password",
       text: "Đổi mật khẩu",
     },

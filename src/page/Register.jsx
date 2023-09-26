@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const phoneRegExp = /^[A-Za-z0-9]*$/;
   const formik = useFormik({
     initialValues: {
       lastname: "",
@@ -22,13 +23,15 @@ const Register = () => {
     },
     validationSchema: Yup.object({
       lastname: Yup.string()
-        .min(5, "Tên người dùng phải trên 5 kí tự")
-        .max(25, "Tên người dùng phải dưới 25 kí tự")
-        .required("Bắt buộc nhập tên"),
-      name: Yup.string()
         .min(5, "Họ tên phải trên 5 kí tự")
         .max(25, "Họ tên phải dưới 25 kí tự")
         .required("Bắt buộc nhập họ tên"),
+      name: Yup.string()
+        .min(5, "Tên người dùng phải trên 5 kí tự")
+        .max(25, "Tên người dùng phải dưới 25 kí tự")
+        .required("Bắt buộc nhập tên người dùng")
+        .matches(phoneRegExp, "Tên người dùng không có kí tự đặc biệt"),
+
       email: Yup.string()
         .email("Vui lòng nhập đúng định dạng email")
         .required("Bắt buộc nhập email")

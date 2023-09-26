@@ -9,9 +9,10 @@ import Avatar from "../components/Avatar";
 import AddShow from "../components/AddShow";
 import HeaderAuth from "../components/HeaderAuth";
 import { getInfosByUser } from "../redux/slice/infoSlice";
+import { LinearProgress } from "@mui/material";
 export default function ListInfo() {
   const authUser = useSelector((state) => state.auth.user);
-  const { userContacts } = useSelector((state) => ({
+  const { userContacts , loading} = useSelector((state) => ({
     ...state.contact,
   }));
   const { userInfos } = useSelector((state) => ({
@@ -23,7 +24,9 @@ export default function ListInfo() {
     dispatch(getContactsByUser());
     dispatch(getInfosByUser());
   }, [dispatch]);
-
+  if (loading) {
+    return <LinearProgress color="success" />;
+  }
   const editName = (id) => {
     if (id) {
       navigate(`/info/${id}`);

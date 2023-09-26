@@ -21,7 +21,7 @@ export const store = configureStore({
     info: infoReducer,
     counter: counterReducer,
   },
-  middleware: [thunk, logger],
+  middleware: [thunk],
 });
 
 export const persistedStore = persistStore(store);

@@ -13,7 +13,9 @@ import Layout from "../components/Layout";
 import LayoutAuth from "../components/LayoutAuth";
 import AddInfoId from "../page/AddInfoId";
 import Error404Page from "../page/Error404Page";
+import Demo from "../page/Demo";
 import UpdateInfoName from "../page/UpdateInfoName";
+import Qrcode from "../page/Qrcode";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +33,14 @@ export const router = createBrowserRouter([
       {
         path: "/forgot-password",
         element: <ForgotPassword />,
+      },
+      {
+        path: "/contact/:username",
+        element: <Demo />,
+      },
+      {
+        path: "/qrcode",
+        element: <Qrcode />,
       },
       {
         path: "/",
