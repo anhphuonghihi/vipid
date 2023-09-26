@@ -13,7 +13,7 @@
     "back__title": "email",
     "title": "Email của bạn là",
     "subtitle": "",
-    "icon": "fa-solid fa-phone",
+    "icon": "fa-solid fa-envelope",
     "name_box": "Email",
     "value_box": "Thêm thư điện tử"
   },
@@ -22,7 +22,7 @@
     "back__title": "địa chỉ",
     "title": "Địa chỉ của bạn là",
     "subtitle": "Địa chỉ....",
-    "icon": "fa-solid fa-phone",
+    "icon": "fa-solid fa-map-location-dot",
     "name_box": "Địa chỉ",
     "value_box": "Thêm địa chỉ"
   },
@@ -31,7 +31,7 @@
     "back__title": "website",
     "title": "Địa trang website của bạn là",
     "subtitle": "",
-    "icon": "fa-solid fa-phone",
+    "icon": "fa-solid fa-earth-americas",
     "name_box": "website",
     "value_box": "Thêm URL WEBSITE"
   },
@@ -40,7 +40,7 @@
     "back__title": "dịch vụ",
     "title": "Dịch vụ bạn cung cấp là",
     "subtitle": "",
-    "icon": "fa-solid fa-phone",
+    "icon": "fa-solid fa-user-secret",
     "name_box": "Dịch vụ",
     "value_box": "Thêm dịch vụ bạn cung cấp"
   },
@@ -49,7 +49,7 @@
     "back__title": "mạng xã hội",
     "title": "Mạng xã hội bạn dùng",
     "subtitle": "...............",
-    "icon": "fa-solid fa-phone",
+    "icon": "fa-solid fa-earth-americas",
     "name_box": "Mạng xã hội",
     "value_box": "Thêm mạng xã hội"
   },
@@ -58,7 +58,7 @@
     "back__title": "tài khoản ngân hàng",
     "title": "Tài khoản ngân hàng của bạn",
     "subtitle": "...............",
-    "icon": "fa-solid fa-phone",
+    "icon": "fa-solid fa-building-columns",
     "name_box": "Tài khoản ngân hàng",
     "value_box": "Thêm tài khoản ngân hàng"
   }

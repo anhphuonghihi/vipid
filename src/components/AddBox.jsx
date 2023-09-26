@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 const AddBox = ({ item, index, len }) => {
   const navigate = useNavigate();
   const addInfo = (id) => {
-    console.log(id);
     navigate(`/info/add/${id}`);
   };
   return (

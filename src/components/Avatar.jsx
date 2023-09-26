@@ -3,6 +3,7 @@ import LogoAvatar from "../asset/img/avatar.png";
 import { Box, Modal, Typography } from "@mui/material";
 import ChangeAvatar from "./ChangeAvatar";
 const Avatar = ({ avatar }) => {
+  console.log(avatar);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -13,6 +14,7 @@ const Avatar = ({ avatar }) => {
       setFile(file);
     }
   };
+  
   return (
     <div class="logo__avatar">
       <div onClick={handleOpen}>
@@ -24,7 +26,7 @@ const Avatar = ({ avatar }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <ChangeAvatar avatar={file} handleChange={handleChange}/>
+        <ChangeAvatar avatar={avatar} handleChange={handleChange} handleClose={handleClose}/>
       </Modal>
     </div>
   );

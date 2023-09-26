@@ -1,16 +1,33 @@
 import { Avatar, Button, IconButton } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updateContact } from "../redux/slice/contactSlice";
-
-const ChangeAvatar = ({ avatar, handleChange }) => {
+import { toast } from "react-toastify";
+import API from "../API";
+import { getContactsByUser } from "../redux/slice/contactSlice";
+import { getInfosByUser } from "../redux/slice/infoSlice";
+const ChangeAvatar = ({ avatar, handleChange, handleClose }) => {
   const dispatch = useDispatch();
-  const handleEdit = (avatar) => {
-    const updatedContactData = { id: "1", avatar };
-    dispatch(updateContact({ id: "1", updatedContactData }));
+  const handleEdit = async (avatar) => {
+    try {
+      await API.post(`/wp2023/v1/profile/`, {
+        avatar: avatar,
+      });
+      toast.success("Cập nhận ảnh đại diện thành công");
+    } catch (err) {
+      console.log(err);
+    }
+    handleClose();
+
+    dispatch(getContactsByUser());
+    dispatch(getInfosByUser());
   };
+  useEffect(() => {
+    dispatch(getContactsByUser());
+    dispatch(getInfosByUser());
+  }, [dispatch]);
+
   return (
-    <div>
+    <div className="mode_css">
       <input
         type="file"
         onChange={handleChange}
@@ -24,7 +41,7 @@ const ChangeAvatar = ({ avatar, handleChange }) => {
           aria-label="upload picture"
           component="span"
         >
-          <img src={avatar && avatar} alt="Logo" />
+          <img src={avatar} alt="Logo" />
         </IconButton>
         <Button
           type="submit"

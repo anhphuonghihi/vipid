@@ -40,7 +40,6 @@ export const register = createAsyncThunk(
         password__user: password,
       };
       await API.post("/wp2023/v1/register/", data).then((res) => {
-        console.log(res.data);
         if (res.data.code == 200) {
           toast.success("Đăng kí thành công");
         } else {
@@ -63,7 +62,6 @@ export const forgotPassword = createAsyncThunk(
         login: email,
       };
       await API.post("/wp2023/v1/resetpassword/", data).then((res) => {
-        console.log(res.data);
         if (res.data.code == 200) {
           toast.success("Đã gửi thông tin");
         } else {
@@ -86,7 +84,6 @@ export const updatePassword = createAsyncThunk(
         password__user_new: password__user_new,
       };
       await API.post("wp2023/v1/changepassword/", data).then((res) => {
-        console.log(res.data.code);
         if (res.data.code == 200) {
           toast.success("Đổi mật khẩu thành công");
         } else {

@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 const Box = ({ item, index, len, none__link }) => {
-  console.log(item);
   const navigate = useNavigate();
   const editInfo = (id) => {
     if (none__link) {
@@ -9,6 +8,9 @@ const Box = ({ item, index, len, none__link }) => {
       navigate(`/info/${id}`);
     }
   };
+  const string = item.contact__id;
+  const substring = "tk";
+
   return (
     <div
       onClick={() => editInfo(item.contact__id)}
@@ -19,11 +21,12 @@ const Box = ({ item, index, len, none__link }) => {
       </div>
       <div class="contact__bottom__box--text">
         <div class="contact__bottom__box--title">{item.name_box}</div>
+
         <div
           class="contact__bottom__box--content contact__phone"
           id="contact__phone"
         >
-          {item.value_box}
+          {string.includes(substring) && item.subtitle} {item.value_box}
         </div>
       </div>
     </div>

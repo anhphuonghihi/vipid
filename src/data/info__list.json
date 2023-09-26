@@ -1,117 +1,115 @@
-{
-  "boxs": [
-    {
-      "id": "position",
-      "back__title": "Vị trị trong công ty",
-      "title": "Vị trị trong công ty là",
-      "subtitle": "",
-      "icon": "fa-solid fa-briefcase",
-      "name_box": "Vị trí",
-      "value_box": "Sale Online",
-      "user__id": "1"
-    },
-    {
-      "id": "cty",
-      "back__title": "Tên công ty",
-      "title": "Công ty đang làm việc là",
-      "subtitle": "",
-      "icon": "fa-solid fa-building",
-      "name_box": "Công ty",
-      "value_box": "CEO GROUP",
-      "user__id": "1"
-    },
-    {
-      "id": "phone",
-      "back__title": "số điện thoại",
-      "title": "Số điện thoại của bạn là",
-      "subtitle": "",
-      "icon": "fa-solid fa-phone",
-      "name_box": "Điện thoại",
-      "value_box": "0369727895",
-      "user__id": "1"
-    },
-    {
-      "id": "dv",
-      "back__title": "số điện thoại",
-      "title": "Số điện thoại của bạn là",
-      "subtitle": "",
-      "icon": "fa-solid fa-user-secret",
-      "name_box": "Dịch vụ",
-      "value_box": "Danh thiếp điện tử VIPID",
-      "user__id": "1"
-    },
-    {
-      "id": "cd",
-      "back__title": "số điện thoại",
-      "title": "Hướng dẫn cài đặt",
-      "subtitle": "",
-      "icon": "fa-solid fa-link",
-      "name_box": "Cài đặt hướng dẫn",
-      "value_box": "AB",
-      "user__id": "1"
-    },
-    {
-      "id": "dia_chi",
-      "back__title": "số điện thoại",
-      "title": "Số làm việc",
-      "subtitle": "",
-      "icon": "fa-solid fa-map-location-dot",
-      "name_box": "Địa chỉ",
-      "value_box": "14 Nguyễn Ngọc Nại, Hà Nội",
-      "user__id": "1"
-    },
-    {
-      "id": "faceboook",
-      "back__title": "số điện thoại",
-      "title": "Facebook của bạn là",
-      "subtitle": "",
-      "icon": "fa-brands fa-facebook",
-      "name_box": "Facebook",
-      "value_box": "Nguyễn Ngọc Cường",
-      "social_network": true,
-      "user__id": "1"
-    },
-    {
-      "id": "email",
-      "back__title": "email",
-      "title": "Địa chỉ email của bạn là",
-      "subtitle": "",
-      "icon": "fa-solid fa-envelope",
-      "name_box": "Email",
-      "value_box": "cuongnnseosgroup@gmail.com",
-      "user__id": "1"
-    },
-    {
-      "id": "tiktok",
-      "back__title": "tiktok",
-      "title": "Tiktok của bạn là",
-      "subtitle": "",
-      "icon": "fa-brands fa-tiktok",
-      "name_box": "TikTok",
-      "value_box": "Nguyễn Ngọc Cường",
-      "social_network": true,
-      "user__id": "1"
-    },
-    {
-      "id": "taikhoan_nganhang",
-      "back__title": "tài khoản ngân hàng",
-      "title": "Tài khoản ngân hàng của bạn là",
-      "subtitle": "",
-      "icon": "fa-solid fa-building-columns",
-      "name_box": "Tài khoản ngân hàng",
-      "ngan_hang": "BIDV",
-      "value_box": "02110000023456",
-      "user__id": "1"
-    },
-    {
-      "id": "web",
-      "back__title": "địa chỉ website",
-      "title": "Đường dẫn website là",
-      "subtitle": "",
-      "icon": "fa-solid fa-earth-americas",
-      "name_box": "Website",
-      "value_box": "danhthiepvipid.com",
-      "user__id": "1"
-    }
-  ]
-}
+[
+  {
+    "id": "position",
+    "back__title": "Vị trị trong công ty",
+    "title": "Vị trị trong công ty là",
+    "subtitle": "",
+    "icon": "fa-solid fa-briefcase",
+    "name_box": "Vị trí",
+    "value_box": "Sale Online",
+    "user__id": "1"
+  },
+  {
+    "id": "cty",
+    "back__title": "Tên công ty",
+    "title": "Công ty đang làm việc là",
+    "subtitle": "",
+    "icon": "fa-solid fa-building",
+    "name_box": "Công ty",
+    "value_box": "CEO GROUP",
+    "user__id": "1"
+  },
+  {
+    "id": "phone",
+    "back__title": "số điện thoại",
+    "title": "Số điện thoại của bạn là",
+    "subtitle": "",
+    "icon": "fa-solid fa-phone",
+    "name_box": "Điện thoại",
+    "value_box": "0369727895",
+    "user__id": "1"
+  },
+  {
+    "id": "dich-vu",
+    "back__title": "dịch vụ",
+    "title": "Dịch vụ của bạn là là",
+    "subtitle": "",
+    "icon": "fa-solid fa-user-secret",
+    "name_box": "Dịch vụ",
+    "value_box": "Danh thiếp điện tử VIPID",
+    "user__id": "1"
+  },
+  {
+    "id": "cd",
+    "back__title": "cài đặt",
+    "title": "Hướng dẫn cài đặt",
+    "subtitle": "",
+    "icon": "fa-solid fa-link",
+    "name_box": "Cài đặt hướng dẫn",
+    "value_box": "AB",
+    "user__id": "1"
+  },
+  {
+    "id": "dia-chi",
+    "back__title": "địa chỉ",
+    "title": "Số làm việc",
+    "subtitle": "",
+    "icon": "fa-solid fa-map-location-dot",
+    "name_box": "Địa chỉ",
+    "value_box": "14 Nguyễn Ngọc Nại, Hà Nội",
+    "user__id": "1"
+  },
+  {
+    "id": "faceboook",
+    "back__title": "facebook",
+    "title": "Facebook của bạn là",
+    "subtitle": "",
+    "icon": "fa-brands fa-facebook",
+    "name_box": "Facebook",
+    "value_box": "Nguyễn Ngọc Cường",
+    "social_network": true,
+    "user__id": "1"
+  },
+  {
+    "id": "email",
+    "back__title": "email",
+    "title": "Địa chỉ email của bạn là",
+    "subtitle": "",
+    "icon": "fa-solid fa-envelope",
+    "name_box": "Email",
+    "value_box": "cuongnnseosgroup@gmail.com",
+    "user__id": "1"
+  },
+  {
+    "id": "tiktok",
+    "back__title": "tiktok",
+    "title": "Tiktok của bạn là",
+    "subtitle": "",
+    "icon": "fa-brands fa-tiktok",
+    "name_box": "TikTok",
+    "value_box": "Nguyễn Ngọc Cường",
+    "social_network": true,
+    "user__id": "1"
+  },
+  {
+    "id": "tk-ngan-hang",
+    "back__title": "tài khoản ngân hàng",
+    "title": "Tài khoản ngân hàng của bạn là",
+    "subtitle": "",
+    "icon": "fa-solid fa-building-columns",
+    "name_box": "Tài khoản ngân hàng",
+    "ngan_hang": "BIDV",
+    "value_box": "02110000023456",
+    "user__id": "1"
+  },
+  {
+    "id": "website",
+    "back__title": "địa chỉ website",
+    "title": "Đường dẫn website là",
+    "subtitle": "",
+    "icon": "fa-solid fa-earth-americas",
+    "name_box": "Website",
+    "value_box": "danhthiepvipid.com",
+    "user__id": "1"
+  }
+]

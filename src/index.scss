@@ -1,4 +1,3 @@
-
 .theme-light {
   --background-color: #1a1a1a;
   --text-color: #fff;
@@ -339,6 +338,7 @@ body .logo__avatar img {
   height: 150px;
   flex-shrink: 0;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 #root {
@@ -443,7 +443,8 @@ i {
 .add__info {
   color: var(--background-color);
 }
-input,.MuiSelect-select {
+input,
+.MuiSelect-select {
   background: var(--background-input) !important;
   color: var(--text-input) !important;
 }
@@ -464,8 +465,31 @@ input,.MuiSelect-select {
 
 .subtitle {
   margin: 5px 0;
+  text-transform: capitalize;
 }
 
-body .logo__avatar{
+body .logo__avatar {
   margin-bottom: 40px;
+}
+.mode_css {
+  max-width: 480px;
+  margin: 0 auto;
+  padding-top: 1vw;
+  img {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .mode_css {
+    max-width: 480px;
+    margin: 0 auto;
+    padding-top: 3vw;
+  }
+  img {
+    width: 100%;
+  }
+}
+
+.MuiMenu-list {
+  text-transform: capitalize;
 }

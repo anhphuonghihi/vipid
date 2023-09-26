@@ -3,22 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import GoBack from "../components/GoBack";
 import info__add from "../data/info__list__add.json";
-import { createInfo } from "../redux/slice/infoSlice";
+import info__list from "../data/info__list.json";
+import { createInfo, getInfosByUser } from "../redux/slice/infoSlice";
 import HeaderEdit from "../components/HeaderEdit";
 import { Button } from "@mui/material";
 import AddInput from "../components/AddInput";
 import AddSelect from "../components/AddSelect";
+import { getContactsByUser } from "../redux/slice/contactSlice";
 const AddInfoId = () => {
   let { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [infoData, setInfoData] = useState();
+  const [contactData, setContactData] = useState();
   const [dataSelect, setDataSelect] = useState();
   useEffect(() => {
     if (id) {
       const singleInfo = info__add?.find((info) => info.id === id);
       setInfoData({ ...singleInfo });
-      // dispatch(getInfosByUser(1));
+      const singleContact = info__list?.find((contact) => contact.id === id);
+      setContactData({ ...singleContact });
       if (singleInfo?.id === "phone") {
         const data = ["Số điện nơi làm việc", "Số điện cá nhân"];
         setDataSelect(data);
@@ -37,11 +41,37 @@ const AddInfoId = () => {
       }
     }
   }, [id, info__add]);
-
-  const handleEdit = ({ name_box, value_box, icon, id }) => {
-    const createInfotData = { id, name_box, value_box, icon };
-    dispatch(createInfo({ createInfotData }));
+  useEffect(() => {
+    dispatch(getContactsByUser());
+    dispatch(getInfosByUser());
+  }, [dispatch]);
+  const { userContacts } = useSelector((state) => ({
+    ...state.contact,
+  }));
+  console.log("userContacts" + userContacts.ID);
+  const handleEdit = ({
+    id,
+    icon,
+    back__title,
+    title,
+    name_box,
+    subtitle,
+    value_box,
+  }) => {
+    const data = {
+      contact__id: id,
+      back__title,
+      title,
+      subtitle,
+      icon,
+      name_box,
+      value_box,
+      user__id: userContacts.ID,
+    };
+    dispatch(createInfo({ data }));
     navigate("/");
+    dispatch(getContactsByUser());
+    dispatch(getInfosByUser());
   };
 
   const [input1, setInput1] = useState("");
@@ -51,16 +81,32 @@ const AddInfoId = () => {
   const handleInput2 = (e) => setInput2(e.target.value);
   const handleSelect1 = (e) => setSelect1(e.target.value);
   const handleSocialNetwork = ({
-    name_box,
-    value_box,
-    icon,
     id,
-    social_network,
+    icon,
+    back__title,
+    title,
+    name_box,
+    subtitle,
+    value_box,
   }) => {
-    const createInfotData = { id, name_box, value_box, icon, social_network };
-    dispatch(createInfo({ createInfotData }));
-    navigate("/");
+    const data = {
+      contact__id: id,
+      back__title,
+      title,
+      subtitle,
+      icon,
+      name_box,
+      value_box,
+      user__id: userContacts.ID,
+    };
+    dispatch(createInfo({ data }));
+    setTimeout(function () {
+      navigate("/");
+    }, 1000);
+    dispatch(getContactsByUser());
+    dispatch(getInfosByUser());
   };
+  console.log("infoData?.id" + infoData?.id);
   return (
     <form>
       <GoBack title={`Thêm ${infoData?.back__title}`} />
@@ -72,21 +118,34 @@ const AddInfoId = () => {
             values={select1}
             name={id}
             dataSelect={dataSelect}
+            lab="Mạng xã hội"
           />
-          <AddInput handleChange={handleInput1} values={input1} name={id} />
-          <AddInput handleChange={handleInput2} values={input2} name={id} />
+          <AddInput
+            handleChange={handleInput1}
+            values={input1}
+            name={id}
+            lab="Tên mạng xã hội"
+          />
+          <AddInput
+            handleChange={handleInput2}
+            values={input2}
+            name={id}
+            lab="Đường dẫn"
+          />
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             sx={{ mt: 2, mb: 2 }}
             onClick={() =>
               handleSocialNetwork({
                 id: select1,
-                icon: infoData?.icon,
+                icon: `fa-brands fa-${select1}`,
+                back__title: "mạng xã hội",
+                title: "Mạng xã hội",
                 name_box: input1,
+                subtitle: select1,
                 value_box: input2,
-                social_network: true,
               })
             }
           >
@@ -117,15 +176,18 @@ const AddInfoId = () => {
             </>
           )}
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             sx={{ mt: 2, mb: 2 }}
             onClick={() =>
               handleEdit({
-                id: infoData?.id,
-                icon: infoData?.icon,
-                name_box: infoData?.name_box,
+                id: id,
+                icon: contactData?.icon,
+                back__title: contactData?.back__title,
+                title: contactData?.title,
+                name_box: contactData?.name_box,
+                subtitle: select1,
                 value_box: input1,
               })
             }

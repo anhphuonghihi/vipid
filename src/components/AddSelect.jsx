@@ -1,16 +1,16 @@
 import { MenuItem, Select, TextField } from "@mui/material";
 import React from "react";
 
-const AddSelect = ({ handleChange, values, name, dataSelect, label }) => {
+const AddSelect = ({ handleChange, values, name, dataSelect, label, lab }) => {
   return (
     <div>
+      {lab && lab}
       <Select
         name={name}
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={values}
         fullWidth
-        label="Nhập thông tin"
         onChange={handleChange}
         sx={{ mt: 1, mb: 1 }}
       >

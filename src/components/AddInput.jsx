@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import React from "react";
 
-const AddInput = ({ handleChange, values, name }) => {
+const AddInput = ({ handleChange, values, name, lab }) => {
   return (
     <div>
       <TextField
@@ -9,7 +9,7 @@ const AddInput = ({ handleChange, values, name }) => {
         name={name}
         fullWidth
         id={name}
-        label="Nhập thông tin"
+        label={lab ? lab : "Nhập thông tin"}
         autoFocus
         onChange={handleChange}
         value={values}

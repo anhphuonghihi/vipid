@@ -13,7 +13,6 @@ const UpdateInfoName = () => {
   const { userContacts } = useSelector((state) => ({
     ...state.contact,
   }));
-  console.log(userContacts);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getContactsByUser());
@@ -22,12 +21,11 @@ const UpdateInfoName = () => {
 
   const handleEdit = (e, { fullname }) => {
     e.preventDefault();
-    console.log("value" + fullname);
-    dispatch(updateContact(fullname));
-    dispatch(getContactsByUser());
     setTimeout(function () {
       navigate("/");
-    }, 500);
+    }, 1000);
+    dispatch(updateContact(fullname));
+    dispatch(getContactsByUser());
   };
   const [input, setInput] = useState(userContacts.display_name);
   const handleInput = (e) => setInput(e.target.value);

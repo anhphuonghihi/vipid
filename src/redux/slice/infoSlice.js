@@ -4,23 +4,11 @@ import { toast } from "react-toastify";
 
 export const createInfo = createAsyncThunk(
   "info/createInfo",
-  async ({ createInfotData }, { rejectWithValue }) => {
+  async ({ data }, { rejectWithValue }) => {
     try {
-      //   const response = await API.post("/info", createInfotData);
-      //   return response.data;
-
-      var infoData = JSON.parse(localStorage.getItem("infoData"));
-      if (infoData != null) {
-        infoData.push(createInfotData);
-
-        localStorage.setItem("infoData", JSON.stringify(infoData));
-      } else {
-        var infoData = [];
-        infoData.push(createInfotData);
-        localStorage.setItem("infoData", JSON.stringify(infoData));
-      }
+      const response = await API.post("/wp2023/v1/contact__list/", data);
       toast.success("Thêm thông tin cá nhân thành công");
-      return infoData;
+      return response.data;
     } catch (err) {
       toast.error(err.response.data);
       return rejectWithValue(err.response.data);
@@ -35,7 +23,6 @@ export const getInfosByUser = createAsyncThunk(
       const response = await API.get(
         `http://phuonghole.com.test/wp-json/wp2023/v1/contact__list__user/`
       );
-
       return response.data.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -50,7 +37,7 @@ export const updateInfo = createAsyncThunk(
       const response = await API.post(`wp2023/v1/contact__list/${id}`, {
         value_box: value_box,
       });
-      toast.success("Cập nhận thông liên hệ thành công");
+      toast.success("Cập nhập thông liên hệ thành công");
       return response.data;
     } catch (err) {
       toast.error(err.response.data);
@@ -63,8 +50,8 @@ export const deleteInfo = createAsyncThunk(
   "info/deleteInfo",
   async ({ id }, { rejectWithValue }) => {
     try {
-      console.log(id);
       const response = await API.delete(`wp2023/v1/contact__list/${id}`);
+      toast.success("Xóa thông liên hệ thành công");
       return response.data;
     } catch (err) {
       toast.error(err.response.data);

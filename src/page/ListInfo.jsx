@@ -14,11 +14,9 @@ export default function ListInfo() {
   const { userContacts } = useSelector((state) => ({
     ...state.contact,
   }));
-  console.log(userContacts);
   const { userInfos } = useSelector((state) => ({
     ...state.info,
   }));
-  console.log(userInfos);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -36,7 +34,7 @@ export default function ListInfo() {
   return (
     <>
       <HeaderAuth authUser={authUser} />
-      <Avatar avatar={userContacts.user_url} />
+      <Avatar avatar={userContacts.user_activation_key} />
       <div onClick={() => editName("name")} class={`contact__bottom__box name`}>
         <div class="contact__bottom__box--icon">
           <i class="fa-solid fa-user"></i>

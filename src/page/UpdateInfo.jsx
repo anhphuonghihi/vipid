@@ -17,7 +17,6 @@ const UpdateInfo = () => {
   const { userInfos } = useSelector((state) => ({
     ...state.info,
   }));
-  console.log(userInfos);
   const dispatch = useDispatch();
   const [infoData, setInfoData] = useState();
   useEffect(() => {
@@ -32,20 +31,23 @@ const UpdateInfo = () => {
     }
   }, [id, userInfos]);
   const handleDelete = (id) => {
-    console.log("logid" + id);
     dispatch(deleteInfo({ id }));
-    dispatch(getContactsByUser());
     setTimeout(function () {
       navigate("/");
-    }, 500);
+    }, 1000);
+    dispatch(getContactsByUser());
+    dispatch(getInfosByUser());
+
   };
   const handleEdit = (e, { id, value_box }) => {
     e.preventDefault();
     dispatch(updateInfo({ id, value_box }));
-    dispatch(getContactsByUser());
     setTimeout(function () {
       navigate("/");
-    }, 500);
+    }, 1000);
+    dispatch(getContactsByUser());
+    dispatch(getInfosByUser());
+
   };
 
   const handleInput = (e) => setInput(e.target.value);
