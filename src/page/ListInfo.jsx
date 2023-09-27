@@ -10,6 +10,7 @@ import AddShow from "../components/AddShow";
 import HeaderAuth from "../components/HeaderAuth";
 import { getInfosByUser } from "../redux/slice/infoSlice";
 import { LinearProgress } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function ListInfo() {
   const authUser = useSelector((state) => state.auth.user);
   const { userContacts, loading } = useSelector((state) => ({
@@ -40,7 +41,7 @@ export default function ListInfo() {
       <Avatar avatar={userContacts.user_activation_key} />
       <div onClick={() => editName("name")} class={`contact__bottom__box name`}>
         <div className="contact__bottom__box--icon">
-          <i className="fa-solid fa-user"></i>
+          <FontAwesomeIcon icon="fa-solid fa-user"/>
         </div>
         <div className="contact__bottom__box--text">
           <div className="contact__bottom__box--title">Họ tên</div>

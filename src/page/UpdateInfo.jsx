@@ -25,7 +25,7 @@ const UpdateInfo = () => {
   const [input, setInput] = useState("");
   useEffect(() => {
     if (id) {
-      const singleInfo = userInfos.find((info) => info.contact__id === id);
+      const singleInfo = userInfos.find((info) => info?.contact__id === id);
       setInfoData({ ...singleInfo });
       setInput(singleInfo["value_box"]);
     }

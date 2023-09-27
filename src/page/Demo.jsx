@@ -4,6 +4,7 @@ import API from "../API";
 import { useState } from "react";
 import LogoAvatar from "../asset/img/avatar.png";
 import { Box } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Demo = () => {
   let { username } = useParams();
   const [userInfo, setUserInfo] = useState([]);
@@ -22,7 +23,7 @@ const Demo = () => {
       setUserInfo(response.data.user);
       setUserContact(response.data.contact);
 
-      seTheme(userInfo[0]?.user_nicename);
+      userInfo && seTheme(userInfo[0]?.user_nicename);
     };
     getData();
   }, [userContact, userInfo, username]);
@@ -36,7 +37,7 @@ const Demo = () => {
         <div>
           <img
             src={
-              userInfo[0]?.user_activation_key
+              userInfo && userInfo[0]?.user_activation_key
                 ? userInfo[0]?.user_activation_key
                 : LogoAvatar
             }
@@ -46,7 +47,7 @@ const Demo = () => {
       </div>
       <div class={`contact__bottom__box name`}>
         <div className="contact__bottom__box--icon">
-          <i className="fa-solid fa-user"></i>
+          <FontAwesomeIcon icon="fa-solid fa-user" />
         </div>
         <div className="contact__bottom__box--text">
           <div className="contact__bottom__box--title">Họ tên</div>
@@ -54,7 +55,7 @@ const Demo = () => {
             className="contact__bottom__box--content contact__phone"
             id="contact__phone"
           >
-            {userInfo[0]?.display_name}
+            {userInfo ? userInfo[0]?.display_name :"Demo"}
           </div>
         </div>
       </div>
@@ -72,7 +73,7 @@ const Demo = () => {
                 }`}`}
               >
                 <div className="contact__bottom__box--icon">
-                  <i class={`${item.icon}`}></i>
+                  <FontAwesomeIcon icon={`${item.icon}`} />
                 </div>
                 <div className="contact__bottom__box--text">
                   <div className="contact__bottom__box--title">
@@ -92,7 +93,7 @@ const Demo = () => {
           })}
       </div>
       <button id="save-btn" onClick={onNav}>
-        <i className="fa-solid fa-plus"></i>
+        <FontAwesomeIcon icon="fa-solid fa-plus" />
       </button>
     </div>
   );

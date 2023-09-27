@@ -100,9 +100,9 @@ const AddInfoId = () => {
       user__id: userContacts.ID,
     };
     dispatch(createInfo({ data }));
-    navigate("/");
     dispatch(getContactsByUser());
     dispatch(getInfosByUser());
+    navigate("/");
   };
   console.log("infoData?.id" + infoData?.id);
   return (

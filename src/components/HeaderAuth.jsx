@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../asset/img/VipId.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slice/authSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const HeaderAuth = ({ authUser }) => {
   const [menu, setMenu] = useState(false);
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ const HeaderAuth = ({ authUser }) => {
           </div>
 
           <button className="icon" onClick={onClickMenu}>
-            <i className="fa-solid fa-bars"></i>
+            <FontAwesomeIcon icon="fa-solid fa-bars" />
           </button>
         </div>
       </div>

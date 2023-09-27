@@ -1,11 +1,14 @@
-import { Avatar, Button, IconButton } from "@mui/material";
-import React, { useEffect } from "react";
+import { Button, IconButton } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import API from "../API";
+import Avatar from "react-avatar-edit";
 import { getContactsByUser } from "../redux/slice/contactSlice";
 import { getInfosByUser } from "../redux/slice/infoSlice";
 const ChangeAvatar = ({ avatar, handleChange, handleClose, file }) => {
+  const [src, setSrc] = useState(null);
+  const [preview, setPreview] = useState(null);
   const dispatch = useDispatch();
   const handleEdit = async (avatar) => {
     try {
@@ -17,39 +20,38 @@ const ChangeAvatar = ({ avatar, handleChange, handleClose, file }) => {
       console.log(err);
     }
     handleClose();
-
     dispatch(getContactsByUser());
     dispatch(getInfosByUser());
   };
-
+  const onClose = () => {
+    setPreview(null);
+  };
+  const onCrop = (view) => {
+    setPreview(view);
+  };
   return (
-    <div className="mode_css">
-      <input
-        type="file"
-        onChange={handleChange}
-        id="upload"
-        accept="image/*"
-        style={{ display: "none" }}
-      />
-      <label htmlFor="upload">
-        <IconButton
-          color="primary"
-          aria-label="upload picture"
-          component="span"
-        >
-          <img src={file ? file : avatar} alt="Logo" />
-        </IconButton>
+    <div>
+      <div className="mode_css">
+        <Avatar
+          width={300}
+          height={300}
+          src={src}
+          onClose={onClose}
+          onCrop={onCrop}
+          label={"Chọn ảnh"}
+        />
         <Button
           type="submit"
           fullWidth
           variant="contained"
           sx={{ mt: 2, mb: 2 }}
-          onClick={() => handleEdit(file)}
+          onClick={() => handleEdit(preview)}
         >
           Lưu thông tin
         </Button>
-      </label>
-      <label htmlFor="avatar" />
+
+        <label htmlFor="avatar" />
+      </div>
     </div>
   );
 };

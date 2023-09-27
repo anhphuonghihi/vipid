@@ -39,6 +39,10 @@ export const router = createBrowserRouter([
         element: <Demo />,
       },
       {
+        path: "*",
+        element: <Demo />,
+      },
+      {
         path: "/qrcode",
         element: <Qrcode />,
       },

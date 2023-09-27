@@ -1,18 +1,25 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import GoBack from "../components/GoBack";
 import HeaderEdit from "../components/HeaderEdit";
 import { useLocation, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getContactsByUser } from "../redux/slice/contactSlice";
 const Qrcode = () => {
   const qrRef = useRef();
   const { userContacts, loading } = useSelector((state) => ({
     ...state.contact,
   }));
+  const dispatch = useDispatch();
   const [username, setUserName] = useState(userContacts.user_login);
   console.log(username);
   const host = window.location.host;
-  const [url, setUrl] = useState(`${host}/contact/${username}`);
+  const [url, setUrl] = useState(
+    `https://hcsmartcard.hcdigiz.com/contact/${username}`
+  );
+  useEffect(() => {
+    dispatch(getContactsByUser());
+  }, [dispatch]);
   console.log(url);
   const downloadQRCode = (e) => {
     e.preventDefault();

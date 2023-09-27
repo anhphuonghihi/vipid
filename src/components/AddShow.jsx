@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +9,7 @@ const AddShow = () => {
   };
   return (
     <button id="save-btn" onClick={onNav}>
-      <i className="fa-solid fa-plus"></i>
+      <FontAwesomeIcon icon="fa-solid fa-plus"/>
     </button>
   );
 };

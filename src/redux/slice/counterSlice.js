@@ -18,7 +18,6 @@ export const backgroundChange = createAsyncThunk(
       toast.success("Thay đổi giao diện thành công");
       return background;
     } catch (err) {
-      toast.error(err.response.data);
       return rejectWithValue(err.response.data);
     }
   }

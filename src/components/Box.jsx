@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 const Box = ({ item, index, len, none__link }) => {
@@ -17,7 +18,7 @@ const Box = ({ item, index, len, none__link }) => {
       class={`contact__bottom__box ${`${len === index && "last"} ${item.id}`}`}
     >
       <div className="contact__bottom__box--icon">
-        <i class={`${item.icon}`}></i>
+        <FontAwesomeIcon icon={`${item.icon}`} />
       </div>
       <div className="contact__bottom__box--text">
         <div className="contact__bottom__box--title">{item.name_box}</div>
