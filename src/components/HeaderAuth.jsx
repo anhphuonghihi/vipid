@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../asset/img/VipId.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slice/authSlice";
 const HeaderAuth = ({ authUser }) => {
   const [menu, setMenu] = useState(false);
@@ -15,6 +15,10 @@ const HeaderAuth = ({ authUser }) => {
     dispatch(logout());
     return navigate("/login");
   };
+  const { userContacts } = useSelector((state) => ({
+    ...state.contact,
+  }));
+  const { user_login } = userContacts
   const content__menu = [
     {
       link: "/",
@@ -25,7 +29,7 @@ const HeaderAuth = ({ authUser }) => {
       text: "Giao diện",
     },
     {
-      link: "/contact/phuonghole",
+      link: `/contact/${user_login}`,
       text: "Demo",
     },
     {

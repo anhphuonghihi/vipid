@@ -19,8 +19,7 @@ const Demo = () => {
         `https://hcsoftvn.com/wp-json/wp2023/v1/profile/public?user_login=${username}`
       );
 
-      var infoData = JSON.parse(localStorage.getItem("infoDataPublic"));
-      var contactData = JSON.parse(localStorage.getItem("contactDataPublic"));
+     
       setUserInfo(response.data.user);
       setUserContact(response.data.contact);
 
