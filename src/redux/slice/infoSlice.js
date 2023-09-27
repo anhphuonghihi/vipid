@@ -21,7 +21,7 @@ export const getInfosByUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await API.get(
-        `http://phuonghole.com.test/wp-json/wp2023/v1/contact__list__user/`
+        `https://hcsoftvn.com/wp-json/wp2023/v1/contact__list__user/`
       );
       return response.data.data;
     } catch (err) {

@@ -16,7 +16,7 @@ const Demo = () => {
   useEffect(() => {
     const getData = async () => {
       const response = await API.get(
-        `http://phuonghole.com.test/wp-json/wp2023/v1/profile/public?user_login=${username}`
+        `https://hcsoftvn.com/wp-json/wp2023/v1/profile/public?user_login=${username}`
       );
 
       var infoData = JSON.parse(localStorage.getItem("infoDataPublic"));
