@@ -16,14 +16,14 @@ const Box = ({ item, index, len, none__link }) => {
       onClick={() => editInfo(item.contact__id)}
       class={`contact__bottom__box ${`${len === index && "last"} ${item.id}`}`}
     >
-      <div class="contact__bottom__box--icon">
+      <div className="contact__bottom__box--icon">
         <i class={`${item.icon}`}></i>
       </div>
-      <div class="contact__bottom__box--text">
-        <div class="contact__bottom__box--title">{item.name_box}</div>
+      <div className="contact__bottom__box--text">
+        <div className="contact__bottom__box--title">{item.name_box}</div>
 
         <div
-          class="contact__bottom__box--content contact__phone"
+          className="contact__bottom__box--content contact__phone"
           id="contact__phone"
         >
           {string.includes(substring) && item.subtitle} {item.value_box}

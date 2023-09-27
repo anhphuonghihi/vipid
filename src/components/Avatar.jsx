@@ -13,9 +13,9 @@ const Avatar = ({ avatar }) => {
       setFile(file);
     }
   };
-  
+
   return (
-    <div class="logo__avatar">
+    <div className="logo__avatar">
       <div onClick={handleOpen}>
         <img src={avatar ? avatar : LogoAvatar} alt="Logo" />
       </div>
@@ -25,7 +25,12 @@ const Avatar = ({ avatar }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <ChangeAvatar file={file} avatar={avatar} handleChange={handleChange} handleClose={handleClose}/>
+        <ChangeAvatar
+          file={file}
+          avatar={avatar}
+          handleChange={handleChange}
+          handleClose={handleClose}
+        />
       </Modal>
     </div>
   );

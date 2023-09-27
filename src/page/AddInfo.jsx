@@ -12,7 +12,7 @@ export default function AddInfo() {
   return (
     <>
       <GoBack title="Thêm thông tin liên hệ" />
-      <h2 class="add__info">Thêm thông tin liên hệ</h2>
+      <h2 className="add__info">Thêm thông tin liên hệ</h2>
       {info__add &&
         info__add.map((item, index) => (
           <AddBox item={item} key={index} index={index + 1} len={len} />

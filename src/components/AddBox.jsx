@@ -10,13 +10,13 @@ const AddBox = ({ item, index, len }) => {
       onClick={() => addInfo(item.id)}
       class={`contact__bottom__box ${len === index && "last"}`}
     >
-      <div class="contact__bottom__box--icon">
+      <div className="contact__bottom__box--icon">
         <i class={`${item.icon}`}></i>
       </div>
-      <div class="contact__bottom__box--text">
-        <div class="contact__bottom__box--title">{item.name_box}</div>
+      <div className="contact__bottom__box--text">
+        <div className="contact__bottom__box--title">{item.name_box}</div>
         <div
-          class="contact__bottom__box--content contact__phone"
+          className="contact__bottom__box--content contact__phone"
           id="contact__phone"
         >
           {item.value_box}

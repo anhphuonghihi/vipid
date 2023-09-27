@@ -39,20 +39,20 @@ export default function ListInfo() {
       <HeaderAuth authUser={authUser} />
       <Avatar avatar={userContacts.user_activation_key} />
       <div onClick={() => editName("name")} class={`contact__bottom__box name`}>
-        <div class="contact__bottom__box--icon">
-          <i class="fa-solid fa-user"></i>
+        <div className="contact__bottom__box--icon">
+          <i className="fa-solid fa-user"></i>
         </div>
-        <div class="contact__bottom__box--text">
-          <div class="contact__bottom__box--title">Họ tên</div>
+        <div className="contact__bottom__box--text">
+          <div className="contact__bottom__box--title">Họ tên</div>
           <div
-            class="contact__bottom__box--content contact__phone"
+            className="contact__bottom__box--content contact__phone"
             id="contact__phone"
           >
             {userContacts.display_name}
           </div>
         </div>
       </div>
-      <div class="list__info">
+      <div className="list__info">
         {userInfos &&
           userInfos.map((item, index) => (
             <Box item={item} key={index} index={index + 1} len={len} />

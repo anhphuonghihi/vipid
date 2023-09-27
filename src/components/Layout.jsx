@@ -11,11 +11,11 @@ const Layout = () => {
   }));
   const theme = localStorage.getItem("background");
   return (
-    <div className={`layout__container ${theme?theme:"theme-dark"}`}>
+    <div className={`layout__container ${theme ? theme : "theme-dark"}`}>
       {token && (
         <>
-          <div class="background"></div>
-          <div class="background__img"></div>
+          <div className="background"></div>
+          <div className="background__img"></div>
         </>
       )}
       <Outlet />

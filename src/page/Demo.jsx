@@ -19,7 +19,6 @@ const Demo = () => {
         `https://hcsoftvn.com/wp-json/wp2023/v1/profile/public?user_login=${username}`
       );
 
-     
       setUserInfo(response.data.user);
       setUserContact(response.data.contact);
 
@@ -31,9 +30,9 @@ const Demo = () => {
 
   return (
     <div className={`layout__container ${theme ? theme : "theme-dark"}`}>
-      <div class="background"></div>
-      <div class="background__img demo"></div>
-      <div class="logo__avatar">
+      <div className="background"></div>
+      <div className="background__img demo"></div>
+      <div className="logo__avatar">
         <div>
           <img
             src={
@@ -46,13 +45,13 @@ const Demo = () => {
         </div>
       </div>
       <div class={`contact__bottom__box name`}>
-        <div class="contact__bottom__box--icon">
-          <i class="fa-solid fa-user"></i>
+        <div className="contact__bottom__box--icon">
+          <i className="fa-solid fa-user"></i>
         </div>
-        <div class="contact__bottom__box--text">
-          <div class="contact__bottom__box--title">Họ tên</div>
+        <div className="contact__bottom__box--text">
+          <div className="contact__bottom__box--title">Họ tên</div>
           <div
-            class="contact__bottom__box--content contact__phone"
+            className="contact__bottom__box--content contact__phone"
             id="contact__phone"
           >
             {userInfo[0]?.display_name}
@@ -60,7 +59,7 @@ const Demo = () => {
         </div>
       </div>
 
-      <div class="list__info">
+      <div className="list__info">
         {userContact &&
           userContact.map((item, index) => {
             const string = item.contact__id;
@@ -72,14 +71,16 @@ const Demo = () => {
                   item.id
                 }`}`}
               >
-                <div class="contact__bottom__box--icon">
+                <div className="contact__bottom__box--icon">
                   <i class={`${item.icon}`}></i>
                 </div>
-                <div class="contact__bottom__box--text">
-                  <div class="contact__bottom__box--title">{item.name_box}</div>
+                <div className="contact__bottom__box--text">
+                  <div className="contact__bottom__box--title">
+                    {item.name_box}
+                  </div>
 
                   <div
-                    class="contact__bottom__box--content contact__phone"
+                    className="contact__bottom__box--content contact__phone"
                     id="contact__phone"
                   >
                     {string.includes(substring) && item.subtitle}{" "}
@@ -91,7 +92,7 @@ const Demo = () => {
           })}
       </div>
       <button id="save-btn" onClick={onNav}>
-        <i class="fa-solid fa-plus"></i>
+        <i className="fa-solid fa-plus"></i>
       </button>
     </div>
   );

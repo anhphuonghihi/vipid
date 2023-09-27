@@ -9,7 +9,7 @@ const Error404Page = () => {
   }, []);
 
   return (
-    <div class="container__404">
+    <div className="container__404">
       <img src={img_404} alt="Quay lại" />
     </div>
   );

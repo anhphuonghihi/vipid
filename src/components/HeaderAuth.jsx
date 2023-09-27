@@ -18,7 +18,7 @@ const HeaderAuth = ({ authUser }) => {
   const { userContacts } = useSelector((state) => ({
     ...state.contact,
   }));
-  const { user_login } = userContacts
+  const { user_login } = userContacts;
   const content__menu = [
     {
       link: "/",
@@ -46,20 +46,20 @@ const HeaderAuth = ({ authUser }) => {
       <div className="header__box__logo">
         <img src={Logo} alt="Logo" />
         <div className="header__auth">
-          <div class="menu" id="menu">
+          <div className="menu" id="menu">
             {content__menu &&
               content__menu.map((item, index) => (
                 <Link key={index} to={item.link}>
                   {item.text}
                 </Link>
               ))}
-            <button class="link" onClick={SubmitLogout}>
+            <button className="link" onClick={SubmitLogout}>
               Đăng xuất
             </button>
           </div>
 
-          <button class="icon" onClick={onClickMenu}>
-            <i class="fa-solid fa-bars"></i>
+          <button className="icon" onClick={onClickMenu}>
+            <i className="fa-solid fa-bars"></i>
           </button>
         </div>
       </div>
