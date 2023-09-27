@@ -88,4 +88,5 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  { basename: "/zapps/[ZALO_MINI_APP_ID]" },
 ]);

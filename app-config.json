@@ -1,0 +1,18 @@
+{
+  "app": {
+    "title": "Card",
+    "headerTitle": "Card",
+    "headerColor": "#1843EF",
+    "textColor": "white",
+    "statusBarColor": "#1843EF",
+    "leftButton": "back",
+    "statusBar": "normal",
+    "actionBarHidden": false,
+    "hideAndroidBottomNavigationBar": false,
+    "hideIOSSafeAreaBottom": false
+  },
+  "debug": false,
+  "listCSS": ["static/css/main.b640ea09.css"],
+  "listSyncJS": ["static/js/main.b5a324c4.js"],
+  "listAsyncJS": []
+}
