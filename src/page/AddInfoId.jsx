@@ -69,9 +69,9 @@ const AddInfoId = () => {
       user__id: userContacts.ID,
     };
     dispatch(createInfo({ data }));
-    navigate("/");
     dispatch(getContactsByUser());
     dispatch(getInfosByUser());
+    navigate("/");
   };
 
   const [input1, setInput1] = useState("");
@@ -100,11 +100,10 @@ const AddInfoId = () => {
       user__id: userContacts.ID,
     };
     dispatch(createInfo({ data }));
-    setTimeout(function () {
-      navigate("/");
-    }, 1000);
+    navigate("/");
     dispatch(getContactsByUser());
     dispatch(getInfosByUser());
+\
   };
   console.log("infoData?.id" + infoData?.id);
   return (

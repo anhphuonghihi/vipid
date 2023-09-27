@@ -32,22 +32,16 @@ const UpdateInfo = () => {
   }, [id, userInfos]);
   const handleDelete = (id) => {
     dispatch(deleteInfo({ id }));
-    setTimeout(function () {
-      navigate("/");
-    }, 1000);
+    navigate("/");
     dispatch(getContactsByUser());
     dispatch(getInfosByUser());
-
   };
   const handleEdit = (e, { id, value_box }) => {
     e.preventDefault();
     dispatch(updateInfo({ id, value_box }));
-    setTimeout(function () {
-      navigate("/");
-    }, 1000);
+    navigate("/");
     dispatch(getContactsByUser());
     dispatch(getInfosByUser());
-
   };
 
   const handleInput = (e) => setInput(e.target.value);

@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import { store, persistedStore } from './redux/store';
 import { PersistGate } from "redux-persist/integration/react";
 import "./setPublicPath.js"
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("app"));
 root.render(
   <Provider  store={store}>
     <PersistGate persistor={persistedStore}>

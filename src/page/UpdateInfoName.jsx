@@ -21,9 +21,7 @@ const UpdateInfoName = () => {
 
   const handleEdit = (e, { fullname }) => {
     e.preventDefault();
-    setTimeout(function () {
-      navigate("/");
-    }, 1000);
+    navigate("/");
     dispatch(updateContact(fullname));
     dispatch(getContactsByUser());
   };

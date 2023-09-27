@@ -59,7 +59,7 @@ const HeaderAuth = ({ authUser }) => {
           </div>
 
           <button class="icon" onClick={onClickMenu}>
-            <i class="fa fa-bars"></i>
+            <i class="fa-solid fa-bars"></i>
           </button>
         </div>
       </div>
