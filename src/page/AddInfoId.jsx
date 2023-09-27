@@ -103,7 +103,6 @@ const AddInfoId = () => {
     navigate("/");
     dispatch(getContactsByUser());
     dispatch(getInfosByUser());
-\
   };
   console.log("infoData?.id" + infoData?.id);
   return (
