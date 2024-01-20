@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { redirect } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import API from "../../API";
@@ -11,12 +12,15 @@ const initialState = {
 
 export const login = createAsyncThunk(
   "auth/login",
-  async ({ name, password }, { rejectWithValue }) => {
+  async ({ email, matkhau }, { rejectWithValue }) => {
     try {
-      const response = await API.post(
-        `/jwt-auth/v1/token?username=${name}&password=${password}`
-      );
-      localStorage.setItem("token", response.data.token);
+      const data = {
+        email: email,
+        matkhau: matkhau,
+      };
+      const response = await API.post(`login`, data);
+      console.log(response.data);
+      localStorage.setItem("token", response.data.data.token);
 
       return response.data;
     } catch (err) {
@@ -29,26 +33,28 @@ export const login = createAsyncThunk(
 export const register = createAsyncThunk(
   "auth/register",
   async (user, { rejectWithValue }) => {
-    const { lastname, name, code, email, password } = user;
-
+    const { lastname, email, password, tencongty, sodienthoai, vitri } = user;
     try {
       const data = {
-        fullname: lastname,
-        nickname: name,
-        ma_kh: code,
         email: email,
-        password__user: password,
+        matkhau: password,
+        hovaten: lastname,
+        tencongty: tencongty,
+        sodienthoai: sodienthoai,
+        vitri: vitri,
       };
-      await API.post("/wp2023/v1/register/", data).then((res) => {
-        if (res.data.code == 200) {
-          toast.success("Đăng kí thành công");
-        } else {
-          toast.error(res.data.msg);
-        }
-      });
-
+      const res = await API.post("/resgiter", data);
+      console.log(res);
+      if (res.status === 200) {
+        toast.success("Đăng kí thành công");
+        redirect("/login");
+      } else {
+        // toast.error(res.data.message);
+      }
       return true;
     } catch (err) {
+      toast.error(err.response.data.message);
+      // console.log(err.response.data.message);
       return rejectWithValue(err.response.data);
     }
   }

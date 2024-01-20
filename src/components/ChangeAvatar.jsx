@@ -12,9 +12,9 @@ const ChangeAvatar = ({ avatar, handleChange, handleClose, file }) => {
   const dispatch = useDispatch();
   const handleEdit = async (avatar) => {
     try {
-      await API.post(`/wp2023/v1/profile/`, {
-        avatar: avatar,
-      });
+      // await API.post(`/wp2023/v1/profile/`, {
+      //   avatar: avatar,
+      // });
       toast.success("Cập nhận ảnh đại diện thành công");
     } catch (err) {
       console.log(err);

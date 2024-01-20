@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { getContactsByUser } from "../redux/slice/contactSlice";
 const Layout = () => {
   const token = useSelector((state) => state.auth?.user.token);
-  const background = useSelector((state) => state.counter.background);
   const { userContacts } = useSelector((state) => ({
     ...state.contact,
   }));
@@ -14,9 +13,9 @@ const Layout = () => {
   useEffect(() => {
     dispatch(getContactsByUser());
   }, [dispatch]);
-  const theme = localStorage.getItem("background");
+
   return (
-    <div className={`layout__container ${theme ? theme : "theme-dark"}`}>
+    <div className={`layout__container theme-dark`}>
       {token && (
         <>
           <div className="background"></div>

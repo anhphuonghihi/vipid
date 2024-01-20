@@ -17,6 +17,9 @@
   margin: 0;
   padding: 0;
 }
+.theme-dark{
+  background-color: #000;
+}
 .layout__container {
   max-width: 400px;
   margin: 0 auto;
@@ -284,7 +287,7 @@ body .avatar img {
   border: none;
   position: fixed;
   bottom: 41px;
-  right: 800px;
+  right: calc(50% - 200px);
 }
 
 body .layout__container .background {
@@ -364,7 +367,7 @@ svg {
   border: none;
   position: fixed;
   bottom: 41px;
-  right: 860px;
+  right: calc(50% - 200px);
   border: 2px solid var(--background-color);
   border-radius: 50%;
   background: var(--text-color);
@@ -459,7 +462,7 @@ input,
   flex-direction: column;
   align-items: center;
 }
-.mode_css button{
+.mode_css button {
   width: 300px;
 }
 .header__back {

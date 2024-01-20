@@ -6,7 +6,7 @@ export const getContactsByUser = createAsyncThunk(
   "contact/getContactsByUser",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await API.get(`/wp2023/v1/profile/`);
+      const response = await API.get(`/a`);
 
       return response.data.data[0];
     } catch (err) {
@@ -19,7 +19,7 @@ export const updateContact = createAsyncThunk(
   "contact/updateContact",
   async (fullname, { rejectWithValue }) => {
     try {
-      const response = await API.post(`/wp2023/v1/profile/`, {
+      const response = await API.post(`/a`, {
         fullname: fullname,
       });
       toast.success("Cập nhận thông tin cá nhân thành công");

@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getContactsByUser } from "../redux/slice/contactSlice";
-
+import API from "../API";
 import Box from "../components/Box";
 
 import Avatar from "../components/Avatar";
 import AddShow from "../components/AddShow";
 import HeaderAuth from "../components/HeaderAuth";
-import { getInfosByUser } from "../redux/slice/infoSlice";
 import { LinearProgress } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function ListInfo() {
   const authUser = useSelector((state) => state.auth.user);
   const { userContacts, loading } = useSelector((state) => ({
@@ -19,11 +16,15 @@ export default function ListInfo() {
   const { userInfos } = useSelector((state) => ({
     ...state.info,
   }));
+  const [userData, setUserData] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getContactsByUser());
-    dispatch(getInfosByUser());
+    const listContact = async () => {
+      const response = await API.get(`/listcontact/`);
+      setUserData(response.data.data.data[2]);
+    };
+    listContact();
   }, [dispatch]);
   if (loading) {
     return <LinearProgress color="success" />;
@@ -33,32 +34,17 @@ export default function ListInfo() {
       navigate(`/info/${id}`);
     }
   };
-  const len = userContacts?.length;
-  console.log(userContacts);
+  console.log(userData);
   return (
     <>
       <HeaderAuth authUser={authUser} />
-      <Avatar avatar={userContacts.user_activation_key} />
-      <div onClick={() => editName("name")} class={`contact__bottom__box name`}>
-        <div className="contact__bottom__box--icon">
-          <FontAwesomeIcon icon="fa-solid fa-user"/>
-        </div>
-        <div className="contact__bottom__box--text">
-          <div className="contact__bottom__box--title">Họ tên</div>
-          <div
-            className="contact__bottom__box--content contact__phone"
-            id="contact__phone"
-          >
-            {userContacts.display_name}
-          </div>
-        </div>
-      </div>
-      <div className="list__info">
-        {userInfos &&
-          userInfos.map((item, index) => (
-            <Box item={item} key={index} index={index + 1} len={len} />
+      <Avatar avatar={userContacts.anh} />
+      {/* <div className="list__info">
+        {userData &&
+          Object.keys(userData).map((item, index) => (
+            <Box item={item} key={index} index={index + 1}  />
           ))}
-      </div>
+      </div> */}
       <AddShow />
     </>
   );

@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "../page/Login";
 import AddInfo from "../page/AddInfo";
 import Auth from "../page/Auth";
-import Background from "../page/Background";
 import ForgotPassword from "../page/ForgotPassword";
 import ListInfo from "../page/ListInfo";
 import Register from "../page/Register";
@@ -31,15 +30,7 @@ export const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/forgot-password",
-        element: <ForgotPassword />,
-      },
-      {
-        path: "/contact/:username",
-        element: <Demo />,
-      },
-      {
-        path: "*",
+        path: "/:username",
         element: <Demo />,
       },
       {
@@ -62,10 +53,6 @@ export const router = createBrowserRouter([
           {
             path: "/profile",
             element: <Auth />,
-          },
-          {
-            path: "/background",
-            element: <Background />,
           },
 
           {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header";
 import Title from "../components/Title";
 import { Button, TextField } from "@mui/material";
@@ -11,27 +11,24 @@ import { useDispatch } from "react-redux";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const phoneRegExp = /^[A-Za-z0-9]*$/;
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
   const formik = useFormik({
     initialValues: {
       lastname: "",
-      name: "",
-      code: "",
       email: "",
       password: "",
       confirmPassword: "",
+      tencongty: "",
+      sodienthoai: "",
+      vitri: "",
     },
     validationSchema: Yup.object({
       lastname: Yup.string()
         .min(5, "Họ tên phải trên 5 kí tự")
         .max(25, "Họ tên phải dưới 25 kí tự")
         .required("Bắt buộc nhập họ tên"),
-      name: Yup.string()
-        .min(5, "Tên người dùng phải trên 5 kí tự")
-        .max(25, "Tên người dùng phải dưới 25 kí tự")
-        .required("Bắt buộc nhập tên người dùng")
-        .matches(phoneRegExp, "Tên người dùng không có kí tự đặc biệt"),
-
       email: Yup.string()
         .email("Vui lòng nhập đúng định dạng email")
         .required("Bắt buộc nhập email")
@@ -40,18 +37,32 @@ const Register = () => {
           (message) => `Vui lòng nhập đúng định dạng email`,
           (value) => value && isEmailValidator(value)
         ),
-      code: Yup.string().required("Bắt buộc nhập mã"),
+      password: Yup.string()
+        .required("Bắt buộc nhập mật khẩu")
+        .min(8, "Mật khẩu phải trên 8 kí tự"),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref("password")], "Mật khẩu chưa được nhập trùng khớp")
         .required("Bắt buộc nhập mật khẩu"),
-      password: Yup.string().required("Bắt buộc nhập mật khẩu"),
+
+      tencongty: Yup.string().required("Bắt buộc nhập tên công ty"),
+      sodienthoai: Yup.string()
+        .required("Bắt buộc nhập mã")
+        .matches(phoneRegExp, "Vui lòng nhập đúng số điện thoại"),
+      vitri: Yup.string().required("Bắt buộc nhập vị trí"),
     }),
     onSubmit: (data) => {
-      dispatch(register(data));
-      navigate("/login");
+      const code = dispatch(register(data));
+      console.log(code);
     },
   });
-
+  const authUser = localStorage.getItem("token");
+  useEffect(() => {
+    if (authUser) {
+      navigate("/");
+    } else {
+      navigate("/register");
+    }
+  }, [authUser]);
   return (
     <div className="login__page">
       <Header />
@@ -65,25 +76,12 @@ const Register = () => {
           value={formik.values.lastname}
           fullWidth
           id="lastname"
-          label="Tên đầy đủ"
+          label="Họ và tên"
           autoFocus
           onChange={formik.handleChange}
         />
         {formik.errors.lastname && formik.touched.lastname && (
           <p className="help is-danger">{formik.errors.lastname}</p>
-        )}
-        <TextField
-          autoComplete="name"
-          name="name"
-          value={formik.values.name}
-          fullWidth
-          id="name"
-          label="Tên đăng nhập"
-          autoFocus
-          onChange={formik.handleChange}
-        />
-        {formik.errors.name && formik.touched.name && (
-          <p className="help is-danger">{formik.errors.name}</p>
         )}
         <TextField
           fullWidth
@@ -97,19 +95,7 @@ const Register = () => {
         {formik.errors.email && formik.touched.email && (
           <p className="help is-danger">{formik.errors.email}</p>
         )}
-        <TextField
-          autoComplete="code"
-          name="code"
-          value={formik.values.code}
-          fullWidth
-          id="code"
-          label="Mã xác nhận"
-          autoFocus
-          onChange={formik.handleChange}
-        />
-        {formik.errors.code && formik.touched.code && (
-          <p className="help is-danger">{formik.errors.code}</p>
-        )}
+
         <TextField
           fullWidth
           name="password"
@@ -136,6 +122,45 @@ const Register = () => {
         {formik.errors.confirmPassword && formik.touched.confirmPassword && (
           <p className="help is-danger">{formik.errors.confirmPassword}</p>
         )}
+        <TextField
+          autoComplete="tencongty"
+          name="tencongty"
+          value={formik.values.tencongty}
+          fullWidth
+          id="tencongty"
+          label="Tên công ty"
+          autoFocus
+          onChange={formik.handleChange}
+        />
+        {formik.errors.tencongty && formik.touched.tencongty && (
+          <p className="help is-danger">{formik.errors.tencongty}</p>
+        )}
+        <TextField
+          autoComplete="sodienthoai"
+          name="sodienthoai"
+          value={formik.values.sodienthoai}
+          fullWidth
+          id="sodienthoai"
+          label="Số điện thoại"
+          autoFocus
+          onChange={formik.handleChange}
+        />
+        {formik.errors.sodienthoai && formik.touched.sodienthoai && (
+          <p className="help is-danger">{formik.errors.sodienthoai}</p>
+        )}
+        <TextField
+          autoComplete="vitri"
+          name="vitri"
+          value={formik.values.vitri}
+          fullWidth
+          id="vitri"
+          label="Vị trí"
+          autoFocus
+          onChange={formik.handleChange}
+        />
+        {formik.errors.vitri && formik.touched.vitri && (
+          <p className="help is-danger">{formik.errors.vitri}</p>
+        )}
         <Button
           type="submit"
           fullWidth
@@ -145,7 +170,7 @@ const Register = () => {
           Đăng ký
         </Button>
       </form>
-      <Link to="/forgot-password">Quên mật khẩu</Link>
+      {/* <Link to="/forgot-password">Quên mật khẩu</Link> */}
     </div>
   );
 };

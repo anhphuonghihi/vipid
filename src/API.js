@@ -1,11 +1,12 @@
 import axios from "axios";
-const API = axios.create({ baseURL: process.env.REACT_APP_BASEURL });
+const API = axios.create({ baseURL: "http://191.96.31.204:1337" });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("token")) {
-    req.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+    req.headers["x-access-token"] = localStorage.getItem("token");
   }
-
+  req.headers["x-api-key"] =
+    "z8j1jklsdmnfoiflksadnm23kszfhru38437823jhk12mn393u232";
   return req;
 });
 

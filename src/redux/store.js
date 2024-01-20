@@ -6,7 +6,6 @@ import logger from "redux-logger";
 import thunk from "redux-thunk";
 import ContactReducer from "./slice/contactSlice";
 import infoReducer from "./slice/infoSlice";
-import counterReducer from "./slice/counterSlice.js";
 const persistConfig = {
   key: "iws",
   storage,
@@ -19,7 +18,6 @@ export const store = configureStore({
     auth: persistAuthReducer,
     contact: ContactReducer,
     info: infoReducer,
-    counter: counterReducer,
   },
   middleware: [thunk],
 });

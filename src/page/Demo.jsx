@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import API from "../API";
+
 import { useState } from "react";
 import LogoAvatar from "../asset/img/avatar.png";
 import { Box } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 const Demo = () => {
   let { username } = useParams();
   const [userInfo, setUserInfo] = useState([]);
@@ -16,7 +17,7 @@ const Demo = () => {
   };
   useEffect(() => {
     const getData = async () => {
-      const response = await API.get(
+      const response = await axios.get(
         `https://hcsoftvn.com/wp-json/wp2023/v1/profile/public?user_login=${username}`
       );
 
@@ -26,7 +27,7 @@ const Demo = () => {
       userInfo && seTheme(userInfo[0]?.user_nicename);
     };
     getData();
-  }, [userContact, userInfo, username]);
+  }, [username]);
   const len = userContact?.length;
 
   return (
@@ -55,7 +56,7 @@ const Demo = () => {
             className="contact__bottom__box--content contact__phone"
             id="contact__phone"
           >
-            {userInfo ? userInfo[0]?.display_name :"Demo"}
+            {userInfo ? userInfo[0]?.display_name : "Demo"}
           </div>
         </div>
       </div>

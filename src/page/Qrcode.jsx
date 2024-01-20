@@ -15,10 +15,10 @@ const Qrcode = () => {
   console.log(username);
   const host = window.location.host;
   const [url, setUrl] = useState(
-    `https://hcsmartcard.hcdigiz.com/contact/${username}`
+    // `https://hcsmartcard.hcdigiz.com/contact/${username}`
   );
   useEffect(() => {
-    dispatch(getContactsByUser());
+    // dispatch(getContactsByUser());
   }, [dispatch]);
   console.log(url);
   const downloadQRCode = (e) => {

@@ -16,23 +16,16 @@ const HeaderAuth = ({ authUser }) => {
     dispatch(logout());
     return navigate("/login");
   };
-  const { userContacts } = useSelector((state) => ({
-    ...state.contact,
+
+  const { userInfos } = useSelector((state) => ({
+    ...state.info,
   }));
-  const { user_login } = userContacts;
   const content__menu = [
     {
       link: "/",
       text: "Trang cá nhân",
     },
-    {
-      link: "/background",
-      text: "Giao diện",
-    },
-    {
-      link: `/contact/${user_login}`,
-      text: "Demo",
-    },
+
     {
       link: "/edit-password",
       text: "Đổi mật khẩu",

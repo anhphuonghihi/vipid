@@ -1,6 +1,6 @@
 {
+  "homepage": "https://hcdigiz.com/",
   "name": "vipid",
-  "homepage": "https://hcdigiz.com/hcsmartcard/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

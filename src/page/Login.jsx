@@ -10,6 +10,7 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
+import isEmailValidator from "validator/lib/isEmail";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,22 +19,31 @@ import { toast } from "react-toastify";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const authUser = useSelector((state) => state.auth.user);
-  const isError = useSelector((state) => state.auth.isError);
+
+  const authUser = localStorage.getItem("token");
   useEffect(() => {
-    if (!authUser?.token) {
-      <Navigate to={"/"} />;
+    if (authUser) {
+      navigate("/");
+    } else {
+      navigate("/login");
     }
-  }, [!authUser.token]);
+  }, [authUser]);
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      password: "",
+      email: "",
+      matkhau: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Bắt buộc nhập họ tên"),
-      password: Yup.string().required("Bắt buộc nhập mật khẩu"),
+      email: Yup.string()
+        .email("Vui lòng nhập đúng định dạng email")
+        .required("Bắt buộc nhập email")
+        .test(
+          "is-valid",
+          (message) => `Vui lòng nhập đúng định dạng email`,
+          (value) => value && isEmailValidator(value)
+        ),
+      matkhau: Yup.string().required("Bắt buộc nhập mật khẩu"),
     }),
     onSubmit: (data) => {
       dispatch(login(data));
@@ -50,31 +60,31 @@ const Login = () => {
       </div>
       <form className="form__login" onSubmit={formik.handleSubmit}>
         <TextField
-          autoComplete="name"
-          name="name"
+          autoComplete="email"
+          name="email"
           fullWidth
-          id="name"
-          label="Tên đăng nhập"
+          id="email"
+          label="Email"
           autoFocus
           onChange={formik.handleChange}
-          value={formik.values.name}
+          value={formik.values.email}
           sx={{ mt: 1, mb: 1 }}
-                  />
-        {formik.errors.name && formik.touched.name && (
-          <p className="help is-danger">{formik.errors.name}</p>
+        />
+        {formik.errors.email && formik.touched.email && (
+          <p className="help is-danger">{formik.errors.email}</p>
         )}
         <TextField
           fullWidth
-          name="password"
+          name="matkhau"
           label="Mật khẩu"
           type="password"
-          id="password"
-          autoComplete="new-password"
-          value={formik.values.password}
+          id="matkhau"
+          autoComplete="new-matkhau"
+          value={formik.values.matkhau}
           onChange={formik.handleChange}
         />
-        {formik.errors.password && formik.touched.password && (
-          <p className="help is-danger">{formik.errors.password}</p>
+        {formik.errors.matkhau && formik.touched.matkhau && (
+          <p className="help is-danger">{formik.errors.matkhau}</p>
         )}
         <Button
           type="submit"
@@ -85,7 +95,7 @@ const Login = () => {
           Đăng nhập
         </Button>
       </form>
-      <Link to="/forgot-password">Quên mật khẩu</Link>
+      {/* <Link to="/forgot-password">Quên mật khẩu</Link> */}
     </div>
   );
 };

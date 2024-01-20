@@ -6,21 +6,22 @@ import Login from "../page/Login";
 import HeaderAuth from "./HeaderAuth";
 import { ToastContainer } from "react-toastify";
 const ProtectedRoute = () => {
-  const authUser = useSelector((state) => state.auth.user);
+
+  const authUser = localStorage.getItem("token")
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-    if (!authUser?.token) {
+    if (!authUser) {
       <Navigate to={"/login"} />;
     }
-  }, [!authUser.token]);
+  }, [!authUser]);
   const SubmitLogout = () => {
     dispatch(logout());
     return navigate("/login");
   };
   return (
     <>
-      {authUser.token ? (
+      {authUser ? (
         <div>
           <div>
             <Outlet />
