@@ -16,19 +16,34 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/slice/authSlice";
 import { toast } from "react-toastify";
+import API from "../API";
+import { useLocalStorage } from "usehooks-ts";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const authUser = localStorage.getItem("token");
-  useEffect(() => {
-    if (authUser) {
-      navigate("/");
-    } else {
-      navigate("/login");
-    }
-  }, [authUser]);
-
+  const [anh, setAnh] = useLocalStorage("response_data_anh");
+  const [diachi, setDiachi] = useLocalStorage("response_data_diachi");
+  const [dichvu, setDichvu] = useLocalStorage("response_data_dichvu");
+  const [duongdanmangxahoi, setDuongdanmangxahoi] = useLocalStorage(
+    "response_data_duongdanmangxahoi"
+  );
+  const [email, setEmail] = useLocalStorage("response_data_email");
+  const [hovaten, setHovaten] = useLocalStorage("response_data_hovaten");
+  const [loainganhang, setLoainganhang] = useLocalStorage(
+    "response_data_loainganhang"
+  );
+  const [mangxahoi, setMangxahoi] = useLocalStorage("response_data_mangxahoi");
+  const [sodienthoai, setSodienthoai] = useLocalStorage(
+    "response_data_sodienthoai"
+  );
+  const [taikhoannganhang, setTaikhoannganhang] = useLocalStorage(
+    "response_data_taikhoannganhang"
+  );
+  const [tencongty, setTencongty] = useLocalStorage("response_data_tencongty");
+  const [vitri, setVitri] = useLocalStorage("response_data_vitri");
+  const [website, setWebsite] = useLocalStorage("response_data_website");
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -46,8 +61,49 @@ const Login = () => {
       matkhau: Yup.string().required("Bắt buộc nhập mật khẩu"),
     }),
     onSubmit: (data) => {
-      dispatch(login(data));
-      navigate("/");
+      const login_open = async () => {
+        try {
+          const response = await API.post(`login`, data);
+          if (response.data.data.token) {
+            localStorage.setItem("token", response.data.data.token);
+            localStorage.setItem("client", response.data.data.id);
+            const response_data = await API.get(
+              `http://191.96.31.204:1337/me`,
+              {
+                headers: {
+                  "x-access-token": response.data.data.token,
+                  "x-client-id": response.data.data.id,
+                  "x-api-key":
+                    "z8j1jklsdmnfoiflksadnm23kszfhru38437823jhk12mn393u232",
+                },
+              }
+            );
+
+            setAnh(response_data.data.data.data.anh);
+            setDiachi(response_data.data.data.data.diachi);
+            setDichvu(response_data.data.data.data.dichvu);
+            setDuongdanmangxahoi(
+              response_data.data.data.data.duongdanmangxahoi
+            );
+            setEmail(response_data.data.data.data.email);
+            setHovaten(response_data.data.data.data.hovaten);
+            setLoainganhang(response_data.data.data.data.loainganhang);
+            setMangxahoi(response_data.data.data.data.mangxahoi);
+            setSodienthoai(response_data.data.data.data.sodienthoai);
+            setTaikhoannganhang(response_data.data.data.data.taikhoannganhang);
+            setTencongty(response_data.data.data.data.tencongty);
+            setVitri(response_data.data.data.data.vitri);
+            setWebsite(response_data.data.data.data.website);
+          }
+          navigate("/");
+          return response;
+        } catch (err) {
+          console.log(err);
+          toast.error("Vui lòng nhập lại tài khoản và mật khẩu");
+          return;
+        }
+      };
+      login_open();
     },
   });
 

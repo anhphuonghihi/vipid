@@ -4,7 +4,8 @@ import Logo from "../asset/img/VipId.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slice/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const HeaderAuth = ({ authUser }) => {
+import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
+const HeaderAuth = () => {
   const [menu, setMenu] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,19 +17,20 @@ const HeaderAuth = ({ authUser }) => {
     dispatch(logout());
     return navigate("/login");
   };
-
-  const { userInfos } = useSelector((state) => ({
-    ...state.info,
-  }));
+  const anh = useReadLocalStorage("client");
   const content__menu = [
     {
       link: "/",
       text: "Trang cá nhân",
     },
 
+    // {
+    //   link: "/edit-password",
+    //   text: "Đổi mật khẩu",
+    // },
     {
-      link: "/edit-password",
-      text: "Đổi mật khẩu",
+      link: `/${anh}`,
+      text: "Demo",
     },
     {
       link: "/qrcode",

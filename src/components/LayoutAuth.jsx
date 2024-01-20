@@ -6,8 +6,7 @@ import Login from "../page/Login";
 import HeaderAuth from "./HeaderAuth";
 import { ToastContainer } from "react-toastify";
 const ProtectedRoute = () => {
-
-  const authUser = localStorage.getItem("token")
+  const authUser = localStorage.getItem("token");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -15,24 +14,17 @@ const ProtectedRoute = () => {
       <Navigate to={"/login"} />;
     }
   }, [!authUser]);
-  const SubmitLogout = () => {
-    dispatch(logout());
-    return navigate("/login");
-  };
+
   return (
     <>
-      {authUser ? (
+      <div>
         <div>
-          <div>
-            <Outlet />
-            <ToastContainer />
-          </div>
+          <div class="background"></div>
+          <div class="background__img demo"></div>
+          <Outlet />
+          <ToastContainer />
         </div>
-      ) : (
-        <>
-          <Login />
-        </>
-      )}
+      </div>
     </>
   );
 };

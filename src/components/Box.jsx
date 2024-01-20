@@ -1,36 +1,61 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-const Box = ({ item, index, none__link }) => {
+import { useReadLocalStorage } from "usehooks-ts";
+const Box = ({ icon, label, name, add }) => {
   const navigate = useNavigate();
   const editInfo = (id) => {
-    if (none__link) {
-    } else {
-      navigate(`/info/${id}`);
-    }
+    navigate(`/info/${id}`, { state: { name: "edit" } });
   };
-  const string = item.contact__id;
-  const substring = "tk";
-
+  const addInfo = (id) => {
+    navigate(`/info/${id}`, { state: { name: "add" } });
+  };
+  const nameIf = useReadLocalStorage(name);
   return (
-    <div
-      onClick={() => editInfo(item.contact__id)}
-      class={`contact__bottom__box ${`${item.id}`}`}
-    >
-      <div className="contact__bottom__box--icon">
-        <FontAwesomeIcon icon={`${item.icon}`} />
-      </div>
-      <div className="contact__bottom__box--text">
-        <div className="contact__bottom__box--title">{item.name_box}</div>
+    <>
+      {add && (
+        <>
+          {nameIf === null && (
+            <div onClick={() => addInfo(name)} class={`contact__bottom__box`}>
+              <div className="contact__bottom__box--icon">
+                <FontAwesomeIcon icon={icon} />
+              </div>
+              <div className="contact__bottom__box--text">
+                <div className="contact__bottom__box--title">{label}</div>
 
-        <div
-          className="contact__bottom__box--content contact__phone"
-          id="contact__phone"
-        >
-          {string.includes(substring) && item.subtitle} {item.value_box}
-        </div>
-      </div>
-    </div>
+                <div
+                  className="contact__bottom__box--content contact__phone"
+                  id="contact__phone"
+                >
+                  {add}
+                </div>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+      {!add && (
+        <>
+          {nameIf !== null && (
+            <div onClick={() => editInfo(name)} class={`contact__bottom__box`}>
+              <div className="contact__bottom__box--icon">
+                <FontAwesomeIcon icon={icon} />
+              </div>
+              <div className="contact__bottom__box--text">
+                <div className="contact__bottom__box--title">{label}</div>
+
+                <div
+                  className="contact__bottom__box--content contact__phone"
+                  id="contact__phone"
+                >
+                  {nameIf}
+                </div>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </>
   );
 };
 

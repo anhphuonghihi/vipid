@@ -3,14 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { useState } from "react";
 import LogoAvatar from "../asset/img/avatar.png";
-import { Box } from "@mui/material";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import BoxDemo from "../components/BoxDemo";
+import { Helmet } from "react-helmet";
 const Demo = () => {
   let { username } = useParams();
   const [userInfo, setUserInfo] = useState([]);
-  const [userContact, setUserContact] = useState([]);
-  const [theme, seTheme] = useState([]);
   const navigate = useNavigate();
   const onNav = () => {
     navigate("/");
@@ -18,80 +18,97 @@ const Demo = () => {
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
-        `https://hcsoftvn.com/wp-json/wp2023/v1/profile/public?user_login=${username}`
+        `http://191.96.31.204:1337/listcontact/${username}`,
+        {
+          headers: {
+            "x-api-key":
+              "z8j1jklsdmnfoiflksadnm23kszfhru38437823jhk12mn393u232",
+          },
+        }
       );
-
-      setUserInfo(response.data.user);
-      setUserContact(response.data.contact);
-
-      userInfo && seTheme(userInfo[0]?.user_nicename);
+      console.log(response);
+      setUserInfo(response.data.data.data);
     };
     getData();
   }, [username]);
-  const len = userContact?.length;
-
+  console.log(userInfo);
   return (
-    <div className={`layout__container ${theme ? theme : "theme-dark"}`}>
+    <div className={`layout__container theme-dark`}>
+      <Helmet>
+        <title>{userInfo?.hovaten}</title>
+      </Helmet>
       <div className="background"></div>
       <div className="background__img demo"></div>
       <div className="logo__avatar">
         <div>
           <img
-            src={
-              userInfo && userInfo[0]?.user_activation_key
-                ? userInfo[0]?.user_activation_key
-                : LogoAvatar
-            }
+            src={userInfo && userInfo?.anh ? userInfo?.anh : LogoAvatar}
             alt="Logo"
           />
         </div>
       </div>
-      <div class={`contact__bottom__box name`}>
-        <div className="contact__bottom__box--icon">
-          <FontAwesomeIcon icon="fa-solid fa-user" />
-        </div>
-        <div className="contact__bottom__box--text">
-          <div className="contact__bottom__box--title">Họ tên</div>
-          <div
-            className="contact__bottom__box--content contact__phone"
-            id="contact__phone"
-          >
-            {userInfo ? userInfo[0]?.display_name : "Demo"}
-          </div>
-        </div>
-      </div>
 
       <div className="list__info">
-        {userContact &&
-          userContact.map((item, index) => {
-            const string = item.contact__id;
-            const substring = "tk";
-            return (
-              <div
-                key={index}
-                class={`contact__bottom__box ${`${len === index && "last"} ${
-                  item.id
-                }`}`}
-              >
-                <div className="contact__bottom__box--icon">
-                  <FontAwesomeIcon icon={`${item.icon}`} />
-                </div>
-                <div className="contact__bottom__box--text">
-                  <div className="contact__bottom__box--title">
-                    {item.name_box}
-                  </div>
-
-                  <div
-                    className="contact__bottom__box--content contact__phone"
-                    id="contact__phone"
-                  >
-                    {string.includes(substring) && item.subtitle}{" "}
-                    {item.value_box}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        <BoxDemo
+          icon="fa-solid fa-user"
+          label="Họ và tên"
+          name={userInfo?.hovaten}
+        />
+        <BoxDemo
+          icon="fa-solid fa-building"
+          label="Tên công ty"
+          name={userInfo?.hovaten}
+        />
+        <BoxDemo
+          icon="fa-solid fa-briefcase"
+          label="Vị trí"
+          name={userInfo?.vitri}
+        />
+        <BoxDemo
+          icon="fa-solid fa-map-location-dot"
+          label="Địa chỉ"
+          name={userInfo?.diachi}
+        />
+        <BoxDemo
+          icon="fa-solid fa-user-secret"
+          label="Dịch vụ"
+          name={userInfo?.dichvu}
+        />
+        <BoxDemo
+          icon="fa-solid fa-envelope"
+          label="Email"
+          name={userInfo?.email}
+        />
+        <BoxDemo
+          icon="fa-solid fa-link"
+          label="Đường dẫn mạng xã hội"
+          name={userInfo?.duongdanmangxahoi}
+        />
+        <BoxDemo
+          icon="fa-solid fa-share-nodes"
+          label="Mạng xã hội"
+          name={userInfo?.mangxahoi}
+        />
+        <BoxDemo
+          icon="fa-solid fa-phone"
+          label="Số điện thoại"
+          name={userInfo?.sodienthoai}
+        />
+        <BoxDemo
+          icon="fa-solid fa-building-columns"
+          label="Loại ngân hàng"
+          name={userInfo?.loainganhang}
+        />
+        <BoxDemo
+          icon="fa-solid fa-building-columns"
+          label="Tài khoản ngân hàng"
+          name={userInfo?.taikhoannganhang}
+        />
+        <BoxDemo
+          icon="fa-solid fa-earth-americas"
+          label="Website"
+          name={userInfo?.website}
+        />
       </div>
       <button id="save-btn" onClick={onNav}>
         <FontAwesomeIcon icon="fa-solid fa-plus" />

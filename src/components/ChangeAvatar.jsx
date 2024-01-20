@@ -4,24 +4,23 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import API from "../API";
 import Avatar from "react-avatar-edit";
-import { getContactsByUser } from "../redux/slice/contactSlice";
-import { getInfosByUser } from "../redux/slice/infoSlice";
+import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
 const ChangeAvatar = ({ avatar, handleChange, handleClose, file }) => {
   const [src, setSrc] = useState(null);
   const [preview, setPreview] = useState(null);
-  const dispatch = useDispatch();
+  const client = useReadLocalStorage("client");
+  const [anh, setAnh] = useLocalStorage("response_data_anh");
   const handleEdit = async (avatar) => {
     try {
-      // await API.post(`/wp2023/v1/profile/`, {
-      //   avatar: avatar,
-      // });
+      setAnh(avatar);
+      await API.patch(`http://191.96.31.204:1337/edit/contact/${client}`, {
+        anh: avatar,
+      });
       toast.success("Cập nhận ảnh đại diện thành công");
     } catch (err) {
       console.log(err);
     }
     handleClose();
-    dispatch(getContactsByUser());
-    dispatch(getInfosByUser());
   };
   const onClose = () => {
     setPreview(null);

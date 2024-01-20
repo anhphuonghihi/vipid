@@ -3,6 +3,7 @@ import { redirect } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import API from "../../API";
+import axios from "axios";
 const initialState = {
   user: {},
   email: "",
@@ -19,11 +20,19 @@ export const login = createAsyncThunk(
         matkhau: matkhau,
       };
       const response = await API.post(`login`, data);
-      console.log(response.data);
       localStorage.setItem("token", response.data.data.token);
+      localStorage.setItem("client", response.data.data.id);
+      const response_data = await axios.get(`http://191.96.31.204:1337/me`, {
+        headers: {
+          "x-access-token": response.data.data.token,
+          "x-client-id": response.data.data.id,
+          "x-api-key": "z8j1jklsdmnfoiflksadnm23kszfhru38437823jhk12mn393u232",
+        },
+      });
 
-      return response.data;
+      return response;
     } catch (err) {
+      console.log(err);
       toast.error("Vui lòng nhập lại tài khoản và mật khẩu");
       return rejectWithValue(err.response.data);
     }
@@ -81,27 +90,7 @@ export const forgotPassword = createAsyncThunk(
     }
   }
 );
-export const updatePassword = createAsyncThunk(
-  "auth/updatePassword",
-  async ({ crr_password__user, password__user_new }, { rejectWithValue }) => {
-    try {
-      const data = {
-        crr_password__user: crr_password__user,
-        password__user_new: password__user_new,
-      };
-      await API.post("wp2023/v1/changepassword/", data).then((res) => {
-        if (res.data.code == 200) {
-          toast.success("Đổi mật khẩu thành công");
-        } else {
-          toast.error(res.data.msg);
-        }
-      });
-      return "ok";
-    } catch (err) {
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
+
 const authSlice = createSlice({
   name: "auth",
   initialState: initialState,
@@ -109,7 +98,9 @@ const authSlice = createSlice({
     logout: (state) => {
       state.user = {};
       localStorage.removeItem("token");
+      localStorage.removeItem("client");
       localStorage.removeItem("infoData");
+      localStorage.clear();
       localStorage.removeItem("username");
     },
   },
@@ -148,17 +139,6 @@ const authSlice = createSlice({
       state.isError = false;
     });
     builder.addCase(forgotPassword.rejected, (state) => {
-      state.isLoading = false;
-      state.isError = true;
-    });
-    builder.addCase(updatePassword.pending, (state) => {
-      state.isLoading = true;
-    });
-    builder.addCase(updatePassword.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.isError = false;
-    });
-    builder.addCase(updatePassword.rejected, (state) => {
       state.isLoading = false;
       state.isError = true;
     });

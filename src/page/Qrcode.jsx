@@ -2,24 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import GoBack from "../components/GoBack";
 import HeaderEdit from "../components/HeaderEdit";
-import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getContactsByUser } from "../redux/slice/contactSlice";
+import { useReadLocalStorage } from "usehooks-ts";
 const Qrcode = () => {
   const qrRef = useRef();
-  const { userContacts, loading } = useSelector((state) => ({
-    ...state.contact,
-  }));
+
   const dispatch = useDispatch();
-  const [username, setUserName] = useState(userContacts.user_login);
-  console.log(username);
+
   const host = window.location.host;
-  const [url, setUrl] = useState(
-    // `https://hcsmartcard.hcdigiz.com/contact/${username}`
-  );
-  useEffect(() => {
-    // dispatch(getContactsByUser());
-  }, [dispatch]);
+  const anh = useReadLocalStorage("client");
+  const [url, setUrl] = useState(`https://hcsmartcard.hcdigiz.com/${anh}`);
   console.log(url);
   const downloadQRCode = (e) => {
     e.preventDefault();
@@ -38,6 +30,8 @@ const Qrcode = () => {
   );
   return (
     <div className="qrcode__container">
+      <div class="background"></div>
+      <div class="background__img demo"></div>
       <GoBack title="Qrcode" />
       <HeaderEdit title="Qrcode" />
       <div ref={qrRef}> {qrcode} </div>
