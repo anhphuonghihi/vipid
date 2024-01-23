@@ -34,11 +34,6 @@ export default function ListInfo() {
   const [website, setWebsite] = useLocalStorage("response_data_website");
   const token = useReadLocalStorage("token");
   const navigate = useNavigate();
-  useEffect(() => {
-    if (token === null) {
-      navigate("/login");
-    }
-  }, []);
 
   const editInfo = (id) => {
     navigate(`/info/${id}`);
