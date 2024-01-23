@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import API from "../../API";
 import axios from "axios";
+import { useLocalStorage } from "usehooks-ts";
 const initialState = {
   user: {},
   email: "",
@@ -56,9 +57,8 @@ export const register = createAsyncThunk(
       console.log(res);
       if (res.status === 200) {
         toast.success("Đăng kí thành công");
-        redirect("/login");
-      } else {
-        // toast.error(res.data.message);
+   
+
       }
       return true;
     } catch (err) {

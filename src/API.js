@@ -6,6 +6,7 @@ API.interceptors.request.use((req) => {
     req.headers["x-access-token"] = localStorage.getItem("token");
     req.headers["x-client-id"] = localStorage.getItem("client");
   }
+  req.headers["Content-Type"] = "application/json";
   req.headers["x-api-key"] =
     "z8j1jklsdmnfoiflksadnm23kszfhru38437823jhk12mn393u232";
   return req;

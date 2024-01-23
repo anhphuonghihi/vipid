@@ -8,9 +8,13 @@ import * as Yup from "yup";
 import isEmailValidator from "validator/lib/isEmail";
 import { register } from "../redux/slice/authSlice";
 import { useDispatch } from "react-redux";
+import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
+import { toast } from "react-toastify";
+import API from "../API";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [dki, setDki] = useLocalStorage("dki");
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -51,16 +55,37 @@ const Register = () => {
       vitri: Yup.string().required("Bắt buộc nhập vị trí"),
     }),
     onSubmit: (data) => {
-      const code = dispatch(register(data));
-      console.log(code);
+      const { lastname, email, password, tencongty, sodienthoai, vitri } = data;
+      const register = async () => {
+        try {
+          const data = {
+            email: email,
+            matkhau: password,
+            hovaten: lastname,
+            tencongty: tencongty,
+            sodienthoai: sodienthoai,
+            vitri: vitri,
+          };
+          const res = await API.post("/resgiter", data);
+          console.log(res);
+          if (res.status === 200) {
+            toast.success("Đăng kí thành công");
+            setDki(true);
+          }
+          return true;
+        } catch (err) {
+          toast.error(err.response.data.message);
+          return;
+        }
+      };
+      register();
     },
   });
-  const authUser = localStorage.getItem("token");
+  const authUser = useReadLocalStorage("dki");
   useEffect(() => {
+    setDki(false)
     if (authUser) {
-      navigate("/");
-    } else {
-      navigate("/register");
+      navigate("/login");
     }
   }, [authUser]);
   return (
